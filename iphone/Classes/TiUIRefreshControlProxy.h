@@ -5,7 +5,8 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #ifdef USE_TI_UIREFRESHCONTROL
-#import "TiProxy.h"
+
+@import TitaniumKit;
 
 @interface TiUIRefreshControlProxy : TiProxy {
     UIRefreshControl* _refreshControl;

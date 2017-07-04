@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIOSSTATUSBAR
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 
 @interface TiUIiOSStatusBarProxy : TiProxy {

@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIOSANIMATOR
 #ifdef USE_TI_UIIOSCOLLISIONBEHAVIOR
-#import "TiProxy.h"
+@import TitaniumKit;
 #import "TiAnimatorProxy.h"
 @interface TiCollisionBehavior : TiProxy  <TiBehaviorProtocol, UICollisionBehaviorDelegate> {
     NSMutableArray* _items;

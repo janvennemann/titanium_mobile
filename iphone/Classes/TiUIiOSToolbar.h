@@ -6,7 +6,7 @@
  */
 
 #ifdef USE_TI_UIIOSTOOLBAR
-#import "TiUIView.h"
+@import TitaniumKit;
 
 @protocol ios6ToolbarDelegate
 - (NSInteger)positionForBar:(id)bar;

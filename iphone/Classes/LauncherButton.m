@@ -29,12 +29,10 @@
 //
 #ifdef USE_TI_UIDASHBOARDVIEW
 
+@import TitaniumKit;
 #import <QuartzCore/QuartzCore.h>
 #import "LauncherButton.h"
 #import "LauncherItem.h"
-#import "TiUtils.h"
-#import "TiUIView.h"
-#import "TiViewProxy.h"
 
 
 @implementation LauncherButton

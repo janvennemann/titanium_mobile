@@ -13,7 +13,7 @@
  */
 #if defined(USE_TI_XML) || defined(USE_TI_NETWORK)
 
-#import "TiProxy.h"
+@import TitaniumKit;
 #import "GDataXMLNode.h"
 #import "TiDOMElementProxy.h"
 

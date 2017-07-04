@@ -6,8 +6,7 @@
  */
 
 #import "LocaleModule.h"
-#import "TiUtils.h"
-#import "TiLocale.h"
+@import TitaniumKit;
 
 @implementation LocaleModule
 

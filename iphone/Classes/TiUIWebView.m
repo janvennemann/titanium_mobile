@@ -6,18 +6,10 @@
  */
 #ifdef USE_TI_UIWEBVIEW
 
+@import TitaniumKit;
 #import "TiUIWebView.h"
 #import "TiUIWebViewProxy.h"
-#import "TiApp.h"
-#import "TiUtils.h" 
-#import "TiProxy.h"
 #import "SBJSON.h"
-#import "TiHost.h"
-#import "Webcolor.h"
-#import "TiBlob.h"
-#import "TiFile.h"
-#import "Mimetypes.h"
-#import "Base64Transcoder.h"
 
 extern NSString * const TI_APPLICATION_ID;
 static NSString * const kTitaniumJavascript = @"Ti.App={};Ti.API={};Ti.App._listeners={};Ti.App._listener_id=1;Ti.App.id=Ti.appId;Ti.App._xhr=XMLHttpRequest;"

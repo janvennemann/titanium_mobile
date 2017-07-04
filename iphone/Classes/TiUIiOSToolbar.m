@@ -7,11 +7,8 @@
 #ifdef USE_TI_UIIOSTOOLBAR
 
 #import "TiUIiOSToolbar.h"
-#import "TiViewProxy.h"
-#import "TiUtils.h"
-#import "TiColor.h"
+@import TitaniumKit;
 #import "TiToolbarButton.h"
-#import "TiToolbar.h"
 
 @implementation TiUIiOSToolbar
 

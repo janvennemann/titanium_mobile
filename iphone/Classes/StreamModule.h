@@ -5,9 +5,7 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #import <Foundation/Foundation.h>
-#import "TiModule.h"
-#import "TiBuffer.h"
-#import "TiStreamProxy.h"
+@import TitaniumKit;
 #ifdef USE_TI_STREAM
 @interface StreamModule : TiModule {
     

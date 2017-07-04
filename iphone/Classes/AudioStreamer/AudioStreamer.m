@@ -15,7 +15,7 @@
 
 #import "AudioStreamer.h"
 #import "AudioStreamerCUR.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 NSString * const ASStatusChangedNotification = @"ASStatusChangedNotification";
 

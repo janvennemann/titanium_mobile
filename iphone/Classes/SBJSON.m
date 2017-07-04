@@ -28,9 +28,7 @@
  */
 
 #import "SBJSON.h"
-#import "TiProxy.h"
-#import "TiHost.h"
-#import "TiBase.h"
+@import TitaniumKit;
 
 NSString * SBJSONErrorDomain = @"org.brautaset.JSON.ErrorDomain";
 

@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_UIIOSANIMATOR
 #ifdef USE_TI_UIIOSSNAPBEHAVIOR
-#import "TiProxy.h"
-#import "TiViewProxy.h"
+@import TitaniumKit;
 #import "TiAnimatorProxy.h"
 @interface TiSnapBehavior : TiProxy <TiBehaviorProtocol> {
     TiViewProxy* _snapItem;

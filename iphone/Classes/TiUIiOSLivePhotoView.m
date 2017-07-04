@@ -8,7 +8,7 @@
 #ifdef USE_TI_UIIOSLIVEPHOTOVIEW
 #import "TiUIiOSLivePhotoView.h"
 #import "TiUIiOSLivePhotoViewProxy.h"
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @implementation TiUIiOSLivePhotoView
 

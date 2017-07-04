@@ -8,8 +8,7 @@
 
 #import "TiUIScrollViewProxy.h"
 #import "TiUIScrollView.h"
-
-#import "TiUtils.h"
+@import TitaniumKit;
 
 @implementation TiUIScrollViewProxy
 

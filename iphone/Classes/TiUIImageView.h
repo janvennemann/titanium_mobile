@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_UIIMAGEVIEW
 
-#import "TiUIView.h"
-#import "ImageLoader.h"
+@import TitaniumKit;
 
 //
 // this is a re-implementation (sort of) of the UIImageView object used for

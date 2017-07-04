@@ -7,7 +7,7 @@
 #if defined(USE_TI_XML) || defined(USE_TI_NETWORK)
 
 #import "TiDOMValidator.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 #import <libxml/tree.h>
 
 

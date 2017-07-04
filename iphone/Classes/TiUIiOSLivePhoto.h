@@ -5,7 +5,7 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
-#import "TiProxy.h"
+@import TitaniumKit;
 #import <Photos/Photos.h>
 
 @interface TiUIiOSLivePhoto : TiProxy

@@ -6,7 +6,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "TiStreamProxy.h"
+@import TitaniumKit;
 
 // Generic stream for data; designed to encapsulate blobs and buffers.
 @interface TiDataStream : TiStreamProxy<TiStreamInternal> {

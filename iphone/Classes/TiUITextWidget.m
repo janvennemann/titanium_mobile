@@ -8,9 +8,7 @@
 
 #import "TiUITextWidget.h"
 #import "TiUITextWidgetProxy.h"
-#import "TiViewProxy.h"
-#import "TiApp.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 #ifdef USE_TI_UIATTRIBUTEDSTRING
 #import "TiUIAttributedStringProxy.h"
 #endif

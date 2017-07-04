@@ -6,10 +6,8 @@
  */
 #ifdef USE_TI_UIIOSPREVIEWCONTEXT
 
+@import TitaniumKit;
 #import <Foundation/Foundation.h>
-#import "TiWindowProxy.h"
-#import "TiViewController.h"
-#import "TiViewProxy.h"
 #import "TiUIiOSPreviewContextProxy.h"
 #import "TiUIiOSPreviewActionProxy.h"
 #import "TiUIiOSPreviewActionGroupProxy.h"

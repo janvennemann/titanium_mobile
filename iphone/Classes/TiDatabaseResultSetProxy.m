@@ -9,8 +9,7 @@
 #import "DatabaseModule.h"
 #import "TiDatabaseResultSetProxy.h"
 #import "TiDatabaseProxy.h"
-#import "TiUtils.h"
-#import "TiBlob.h"
+@import TitaniumKit;
 
 @implementation TiDatabaseResultSetProxy
 

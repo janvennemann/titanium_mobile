@@ -30,10 +30,9 @@
 
 #ifdef USE_TI_UIDASHBOARDVIEW
 
+@import TitaniumKit;
 #import "LauncherItem.h"
 #import "LauncherButton.h"
-#import "TiUIView.h"
-#import "TiUIViewProxy.h"
 
 @implementation LauncherItem
 

@@ -7,7 +7,7 @@
 #ifdef USE_TI_UIIPHONELISTVIEWSCROLLPOSITION
 
 #import "TiUIiPhoneListViewScrollPositionProxy.h"
-#import "TiBase.h"
+@import TitaniumKit;
 
 @implementation TiUIiPhoneListViewScrollPositionProxy
 

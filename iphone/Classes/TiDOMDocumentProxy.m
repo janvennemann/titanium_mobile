@@ -19,7 +19,7 @@
 #import "TIDOMDOMImplementationProxy.h"
 #import "TIDOMDocumentTypeProxy.h"
 #import "TiDOMEntityRefProxy.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 #import "TiDOMValidator.h"
 
 @implementation TiDOMDocumentProxy

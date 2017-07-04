@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIPHONELISTVIEWSTYLE
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiPhoneListViewStyleProxy : TiProxy {
 

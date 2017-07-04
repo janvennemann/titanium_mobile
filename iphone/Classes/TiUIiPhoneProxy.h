@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIPHONE
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiPhoneProxy : TiProxy {
 @private

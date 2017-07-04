@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_MEDIAAUDIORECORDER
 
-#import "TiProxy.h"
-#import "TiFile.h"
+#import <TitaniumKit/TitaniumKit.h>
 #import <AVFoundation/AVAudioRecorder.h>
 
 typedef enum

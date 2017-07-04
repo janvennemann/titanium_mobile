@@ -6,10 +6,7 @@
  */
 #ifdef USE_TI_UIIOSDOCUMENTVIEWER
 #import "TiUIiOSDocumentViewerProxy.h"
-#import "TiUtils.h"
-#import "TiBlob.h"
-#import "TiApp.h"
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @implementation TiUIiOSDocumentViewerProxy
 

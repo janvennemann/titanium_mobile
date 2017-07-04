@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UISCROLLVIEW
 
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @interface TiUIScrollViewProxy : TiViewProxy<UIScrollViewDelegate> 
 {

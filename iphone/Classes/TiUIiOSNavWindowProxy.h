@@ -6,7 +6,7 @@
  */
 
 #ifdef USE_TI_UIIOSNAVIGATIONWINDOW
-#import "TiWindowProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiOSNavWindowProxy : TiWindowProxy<UINavigationControllerDelegate,UIGestureRecognizerDelegate, TiOrientationController,TiTab> {
 @private

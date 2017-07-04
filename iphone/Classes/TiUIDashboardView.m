@@ -7,8 +7,7 @@
 #ifdef USE_TI_UIDASHBOARDVIEW
 
 #import "TiUIDashboardView.h"
-#import "TiUtils.h"
-#import "TiRect.h"
+@import TitaniumKit;
 #import "TiUIDashboardViewProxy.h"
 #import "TiUIDashboardItemProxy.h"
 #import "LauncherView.h"

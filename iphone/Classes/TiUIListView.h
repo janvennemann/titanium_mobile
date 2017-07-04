@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UILISTVIEW
 
-#import "TiUIView.h"
+@import TitaniumKit;
 #import "TiUIListViewProxy.h"
 
 #if IS_XCODE_8

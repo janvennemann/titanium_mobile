@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIPHONEPROGRESSBARSTYLE
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiPhoneProgressBarStyleProxy : TiProxy {
 

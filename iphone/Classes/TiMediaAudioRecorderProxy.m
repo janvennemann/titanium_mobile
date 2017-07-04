@@ -7,10 +7,7 @@
 #ifdef USE_TI_MEDIAAUDIORECORDER
 
 #import "TiMediaAudioRecorderProxy.h"
-#import "TiUtils.h"
-#import "TiFile.h"
 #import "TiMediaAudioSession.h"
-#import "TiFilesystemFileProxy.h"
 #import <AudioToolbox/AudioFile.h>
 
 @implementation TiMediaAudioRecorderProxy

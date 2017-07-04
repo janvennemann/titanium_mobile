@@ -7,7 +7,7 @@
 #ifdef USE_TI_UIIPHONESYSTEMBUTTONSTYLE
 
 #import "TiUIiPhoneSystemButtonStyleProxy.h"
-#import "TiBase.h"
+@import TitaniumKit;
 
 @implementation TiUIiPhoneSystemButtonStyleProxy
 

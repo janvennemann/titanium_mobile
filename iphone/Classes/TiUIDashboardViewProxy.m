@@ -9,7 +9,7 @@
 #import "TiUIDashboardViewProxy.h"
 #import "TiUIDashboardItemProxy.h"
 #import "TiUIDashboardView.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 #import "LauncherItem.h"
 #import "LauncherButton.h"
 #import "LauncherView.h"

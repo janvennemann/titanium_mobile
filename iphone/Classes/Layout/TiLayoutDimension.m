@@ -7,7 +7,7 @@
 
 #ifdef TI_USE_AUTOLAYOUT
 #import "TiLayoutDimension.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 NSString* const kTiBehaviorSize = @"SIZE";
 NSString* const kTiBehaviorFill = @"FILL";

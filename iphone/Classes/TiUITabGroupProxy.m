@@ -6,10 +6,10 @@
  */
 #ifdef USE_TI_UITAB
 
+@import TitaniumKit;
+#import "TiUITabGroup.h"
 #import "TiUITabGroupProxy.h"
 #import "TiUITabProxy.h"
-#import "TiUITabGroup.h"
-#import "TiApp.h"
 
 @implementation TiUITabGroupProxy
 

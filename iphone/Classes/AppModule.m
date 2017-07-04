@@ -7,17 +7,14 @@
 #ifdef USE_TI_APP
 
 #import "AppModule.h"
-#import "TiHost.h"
 #import "SBJSON.h"
-#import "ListenerEntry.h"
-#import "TiApp.h"
+@import TitaniumKit;
 #if defined(USE_TI_APPIOS)
 #import "TiAppiOSProxy.h"
 #endif
 
 #import <UIKit/UILocalNotification.h>
 #import <unistd.h>
-#import "TiLayoutQueue.h"
 
 extern NSString * const TI_APPLICATION_DEPLOYTYPE;
 extern NSString * const TI_APPLICATION_ID;

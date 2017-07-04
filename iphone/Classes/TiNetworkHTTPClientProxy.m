@@ -9,10 +9,6 @@
 
 #import "TiNetworkHTTPClientProxy.h"
 #import "NetworkModule.h"
-#import "TiUtils.h"
-#import "TiBase.h"
-#import "TiApp.h"
-#import "Mimetypes.h"
 
 #define TI_HTTP_REQUEST_PROGRESS_INTERVAL 0.03f
 

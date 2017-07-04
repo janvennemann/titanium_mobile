@@ -7,8 +7,7 @@
 #if defined(USE_TI_UIIPHONETABLEVIEWCELLSELECTIONSTYLE) || defined(USE_TI_UIIPHONELISTVIEWCELLSELECTIONSTYLE)
 
 #import "TiUIiPhoneTableViewCellSelectionStyleProxy.h"
-
-#import "TiUtils.h"
+@import TitaniumKit;
 
 @implementation TiUIiPhoneTableViewCellSelectionStyleProxy
 

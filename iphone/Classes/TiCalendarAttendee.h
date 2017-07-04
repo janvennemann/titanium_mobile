@@ -6,7 +6,7 @@
  */
 
 #ifdef USE_TI_CALENDAR
-#import "TiProxy.h"
+@import TitaniumKit;
 #import "CalendarModule.h"
 
 @interface TiCalendarAttendee : TiProxy {

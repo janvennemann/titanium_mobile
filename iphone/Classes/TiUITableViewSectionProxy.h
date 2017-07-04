@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UITABLEVIEW
 
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @class TiUITableViewRowProxy;
 @class TiUITableView;

@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_UIIOSANIMATOR
 #ifdef USE_TI_UIIOSGRAVITYBEHAVIOR
-#import "TiProxy.h"
-#import "TiViewProxy.h"
+@import TitaniumKit;
 #import "TiAnimatorProxy.h"
 @interface TiGravityBehavior : TiProxy <TiBehaviorProtocol> {
     CGFloat _angle;

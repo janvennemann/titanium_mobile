@@ -12,7 +12,7 @@
 #endif
 #endif
 
-#import "TiUIView.h"
+@import TitaniumKit;
 
 @interface TiUIScrollViewImpl : UIScrollView {
 @private

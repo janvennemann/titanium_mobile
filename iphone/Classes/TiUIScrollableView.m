@@ -8,8 +8,7 @@
 
 #import "TiUIScrollableView.h"
 #import "TiUIScrollableViewProxy.h"
-#import "TiUtils.h"
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @interface TiUIScrollableView(redefiningProxy)
 @property(nonatomic,readonly)	TiUIScrollableViewProxy * proxy;

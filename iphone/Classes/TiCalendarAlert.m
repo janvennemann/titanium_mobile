@@ -8,8 +8,7 @@
 
 #import "TiCalendarAlert.h"
 #import "TiCalendarEvent.h"
-#import "TiUtils.h"
-#import "TiBlob.h"
+@import TitaniumKit;
 
 @implementation TiCalendarAlert
 

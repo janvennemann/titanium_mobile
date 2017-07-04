@@ -7,11 +7,7 @@
 
 #ifdef USE_TI_UICLIPBOARD
 #import "TiUIClipboardProxy.h"
-#import "TiUtils.h"
-#import "TiApp.h"
-#import "TiBlob.h"
-#import "TiFile.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 #import <MobileCoreServices/UTType.h>
 #import <MobileCoreServices/UTCoreTypes.h>

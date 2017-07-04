@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIDASHBOARDVIEW
 
-#import "TiUIView.h"
+@import TitaniumKit;
 
 @interface TiUIDashboardItem : TiUIView {
 

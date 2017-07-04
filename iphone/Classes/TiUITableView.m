@@ -6,16 +6,9 @@
  */
 #ifdef USE_TI_UITABLEVIEW
 
+@import TitaniumKit;
 #import "TiUITableView.h"
-#import "TiUtils.h"
-#import "Webcolor.h"
-#import "WebFont.h"
-#import "ImageLoader.h"
-#import "TiProxy.h"
-#import "TiViewProxy.h"
 #import "TiUITableViewProxy.h"
-#import "TiApp.h"
-#import "TiLayoutQueue.h"
 
 #define DEFAULT_SECTION_HEADERFOOTER_HEIGHT 29.0
 #define GROUPED_MARGIN_WIDTH 18.0

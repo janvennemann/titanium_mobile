@@ -10,7 +10,7 @@
 #ifdef USE_TI_NETWORK
 
 #import <Foundation/Foundation.h>
-#import "TiProxy.h"
+@import TitaniumKit;
 #import <Foundation/NSNetServices.h>
 
 // NSNetServiceBrowser delegate

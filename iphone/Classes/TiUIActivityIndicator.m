@@ -7,10 +7,7 @@
 #ifdef USE_TI_UIACTIVITYINDICATOR
 
 #import "TiUIActivityIndicator.h"
-#import "TiViewProxy.h"
-#import "TiUtils.h"
-#import "WebFont.h"
-#import "Webcolor.h"
+@import TitaniumKit;
 
 @implementation TiUIActivityIndicator
 

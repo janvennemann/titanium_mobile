@@ -5,13 +5,10 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #ifdef USE_TI_UITAB
- 
-#import "TiProxy.h"
+
+@import TitaniumKit;
 #import "TiUITabProxy.h"
 #import "TiUITabGroupProxy.h"
-#import "TiUtils.h"
-#import "ImageLoader.h"
-#import "TiApp.h"
 
 
 //NOTE: this proxy is a little different than normal Proxy/View pattern

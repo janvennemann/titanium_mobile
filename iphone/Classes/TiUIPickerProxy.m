@@ -10,7 +10,7 @@
 #import "TiUIPickerColumnProxy.h"
 #import "TiUIPickerRowProxy.h"
 #import "TiUIPicker.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 NSArray* pickerKeySequence;
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "TiProxy.h"
+@import TitaniumKit;
 #import "TiMediaItem.h"
 
 @interface TiMediaMusicPlayer : TiProxy {

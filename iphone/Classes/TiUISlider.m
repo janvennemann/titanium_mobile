@@ -8,8 +8,7 @@
 
 #import "TiUISlider.h"
 #import "TiUISliderProxy.h"
-#import "TiUtils.h"
-#import "ImageLoader.h"
+@import TitaniumKit;
 
 @implementation TiUISlider
 

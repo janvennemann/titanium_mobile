@@ -7,7 +7,7 @@
 #ifdef USE_TI_MEDIAAUDIOPLAYER
 
 #import "TiMediaAudioPlayerProxy.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 #import "TiMediaAudioSession.h"
 #include <AudioToolbox/AudioToolbox.h>
 

@@ -6,7 +6,7 @@
  */
 #if defined(USE_TI_UIIPHONETABLEVIEWSTYLE) || defined(USE_TI_UIIPHONELISTVIEWSTYLE)
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiPhoneTableViewStyleProxy : TiProxy {
 }

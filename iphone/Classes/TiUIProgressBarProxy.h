@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIPROGRESSBAR
 
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 
 @interface TiUIProgressBarProxy : TiViewProxy {

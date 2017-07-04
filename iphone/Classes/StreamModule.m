@@ -6,8 +6,6 @@
  */
 
 #import "StreamModule.h"
-#import "TiStreamProxy.h"
-#import "TiBuffer.h"
 #import "TiDataStream.h"
 
 #ifdef USE_TI_STREAM

@@ -6,8 +6,7 @@
  */
 
 #import "WatchSessionModule.h"
-#import "TiUtils.h"
-#import "TiEvaluator.h"
+@import TitaniumKit;
 
 @interface WatchMessageCallback : NSObject
 {

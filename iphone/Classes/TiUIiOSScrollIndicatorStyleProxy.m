@@ -7,8 +7,7 @@
 #ifdef USE_TI_UIIOSSCROLLINDICATORSTYLE
 
 #import "TiUIiOSScrollIndicatorStyleProxy.h"
-
-#import "TiUtils.h"
+@import TitaniumKit;
 
 @implementation TiUIiOSScrollIndicatorStyleProxy
 

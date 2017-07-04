@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIOSDOCUMENTVIEWER
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiOSDocumentViewerProxy : TiProxy<UIDocumentInteractionControllerDelegate> {
 @private

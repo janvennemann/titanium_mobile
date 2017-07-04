@@ -6,7 +6,6 @@
  */
 
 #import "TiAppiOSNotificationActionProxy.h"
-#import "TiUtils.h"
 
 #ifdef USE_TI_APPIOS
 

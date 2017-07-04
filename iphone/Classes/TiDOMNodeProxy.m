@@ -21,7 +21,7 @@
 #import "TiDOMEntityProxy.h"
 #import "TiDOMEntityRefProxy.h"
 #import "TiDOMNotationProxy.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 #import "TiDOMValidator.h"
 #include <libkern/OSAtomic.h>
 

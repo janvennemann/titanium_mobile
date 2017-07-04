@@ -7,8 +7,7 @@
 #ifdef USE_TI_UIPROGRESSBAR
 
 #import "TiUIProgressBar.h"
-#import "TiUtils.h"
-#import "WebFont.h"
+@import TitaniumKit;
 
 @implementation TiUIProgressBar
 

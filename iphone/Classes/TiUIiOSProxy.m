@@ -6,8 +6,7 @@
  */
 
 #import "TiUIiOSProxy.h"
-#import "TiUtils.h"
-#import "Webcolor.h"
+@import TitaniumKit;
 #ifdef USE_TI_UIIOS
 
 #ifdef USE_TI_UIIOSPREVIEWCONTEXT
@@ -22,10 +21,6 @@
 
 #ifdef USE_TI_UIIOSLIVEPHOTOVIEW
 #import "TiUIiOSLivePhotoViewProxy.h"
-#endif
-
-#ifdef USE_TI_UIIOSTRANSITIONANIMATION
-#import "TiUIiOSTransitionAnimationProxy.h"
 #endif
 
 #ifdef USE_TI_UIIOSADVIEW

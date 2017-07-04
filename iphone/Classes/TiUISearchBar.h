@@ -12,8 +12,7 @@
 
 #ifdef USE_TI_UISEARCHBAR
 
-#import "TiUIView.h"
-
+@import TitaniumKit;
 
 @interface TiUISearchBar : TiUIView<UISearchBarDelegate> {
 @private

@@ -6,9 +6,9 @@
  */
 #ifdef USE_TI_UITABLEVIEW
 
-#import "TiBase.h"
 #import "TiUITableViewAction.h"
-#import "TiUtils.h"
+
+@import TitaniumKit;
 
 @implementation TiUITableViewAction
 

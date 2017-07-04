@@ -4,25 +4,11 @@
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
-#import "TiBase.h"
 
 #ifdef USE_TI_UI
 
-#import "TiDimension.h"
 #import "UIModule.h"
-#import "TiProxy.h"
 
-#ifdef USE_TI_UI2DMATRIX
-	#import "Ti2DMatrix.h"
-#endif
-
-#ifdef USE_TI_UI3DMATRIX
-    #import "Ti3DMatrix.h"
-#endif
-
-#ifdef USE_TI_UIANIMATION
-	#import "TiAnimation.h"
-#endif
 #ifdef USE_TI_UIIPHONE
 	#import "TiUIiPhoneProxy.h"
 #endif
@@ -38,11 +24,6 @@
 #ifdef USE_TI_UIATTRIBUTEDSTRING
 #import "TiUIAttributedStringProxy.h"
 #endif
-
-#import "TiApp.h"
-#import "ImageLoader.h"
-#import "Webcolor.h"
-#import "TiUtils.h"
 
 @implementation UIModule
 

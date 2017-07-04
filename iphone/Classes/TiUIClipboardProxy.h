@@ -6,7 +6,7 @@
  */
 
 #ifdef USE_TI_UICLIPBOARD
-#import "TiProxy.h"
+@import TitaniumKit;
 @interface TiUIClipboardProxy : TiProxy {
 @private
     UIPasteboard *_pasteboard;

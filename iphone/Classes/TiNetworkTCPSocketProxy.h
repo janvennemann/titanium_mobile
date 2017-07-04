@@ -7,8 +7,7 @@
 #ifdef USE_TI_NETWORK
 
 #import <Foundation/Foundation.h>
-#import "TiProxy.h"
-#import "TiBlob.h"
+@import TitaniumKit;
 #import "NetworkModule.h"
 
 

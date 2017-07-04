@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIPHONESYSTEMBUTTON
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiPhoneSystemButtonProxy : TiProxy {
 

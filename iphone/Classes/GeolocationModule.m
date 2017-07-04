@@ -6,13 +6,10 @@
  */
 #ifdef USE_TI_GEOLOCATION
 
+@import TitaniumKit;
 #import "GeolocationModule.h"
-#import "TiApp.h"
-#import "TiEvaluator.h"
 #import "SBJSON.h"
 #import <sys/utsname.h>
-#import "NSData+Additions.h"
-#import "APSAnalytics.h"
 #import "AnalyticsModule.h"
 
 extern NSString * const TI_APPLICATION_GUID;

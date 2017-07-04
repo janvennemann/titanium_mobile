@@ -5,7 +5,7 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #ifdef USE_TI_UIIOSLIVEPHOTOVIEW
-#import "TiViewProxy.h"
+@import TitaniumKit;
 #import "TiUIiOSLivePhoto.h"
 #import "TiUIiOSLivePhotoView.h"
 #import <PhotosUI/PhotosUI.h>

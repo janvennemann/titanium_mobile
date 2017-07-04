@@ -7,7 +7,6 @@
 #ifdef USE_TI_UIIPHONESTATUSBAR
 
 #import "TiUIiPhoneStatusBarProxy.h"
-#import "TiUtils.h"
 
 @implementation TiUIiPhoneStatusBarProxy
 

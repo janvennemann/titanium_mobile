@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_PLATFORM
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 
 @interface TiPlatformDisplayCaps : TiProxy {

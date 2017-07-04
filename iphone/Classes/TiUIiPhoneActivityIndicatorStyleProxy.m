@@ -7,7 +7,7 @@
 #ifdef USE_TI_UIIPHONEACTIVITYINDICATORSTYLE
 
 #import "TiUIiPhoneActivityIndicatorStyleProxy.h"
-#import "TiBase.h"
+@import TitaniumKit;
 
 @implementation TiUIiPhoneActivityIndicatorStyleProxy
 

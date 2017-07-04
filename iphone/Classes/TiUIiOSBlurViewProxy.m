@@ -8,7 +8,6 @@
 #ifdef USE_TI_UIIOSBLURVIEW
 #import "TiUIiOSBlurViewProxy.h"
 #import "TiUIiOSBlurView.h"
-#import "TiUtils.h"
 
 @implementation TiUIiOSBlurViewProxy
 

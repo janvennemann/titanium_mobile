@@ -6,12 +6,9 @@
  */
 #ifdef USE_TI_UIIMAGEVIEW
 
+@import TitaniumKit;
 #import "TiUIImageViewProxy.h"
 #import "TiUIImageView.h"
-#import "OperationQueue.h"
-#import "TiApp.h"
-#import "TiFile.h"
-#import "TiBlob.h"
 
 #define DEBUG_IMAGEVIEW
 #define DEFAULT_IMAGEVIEW_INTERVAL 200

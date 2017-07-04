@@ -4,15 +4,15 @@
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
-#import "TiModule.h"
+@import TitaniumKit;
 
 #ifdef USE_TI_CONTACTS
 
+@import TitaniumKit;
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <Contacts/Contacts.h>
 #import <ContactsUI/ContactsUI.h>
-#import "KrollCallback.h"
 #import "TiContactsPerson.h"
 
 @interface ContactsModule : TiModule<ABPeoplePickerNavigationControllerDelegate, CNContactPickerDelegate,CNContactViewControllerDelegate, TiContactsPersonUpdateObserver> {

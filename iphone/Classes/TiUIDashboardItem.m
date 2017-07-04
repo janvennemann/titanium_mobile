@@ -8,9 +8,7 @@
 
 #import "TiUIDashboardItem.h"
 #import "TiUIDashboardItemProxy.h"
-#import "TiUtils.h"
-#import "TiViewProxy.h"
-#import "TiUIView.h"
+@import TitaniumKit;
 #import "LauncherItem.h"
 #import "LauncherButton.h"
 

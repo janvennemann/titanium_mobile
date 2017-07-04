@@ -8,10 +8,6 @@
 #import "TiUITextArea.h"
 #import "TiUITextAreaProxy.h"
 
-#import "TiUtils.h"
-#import "Webcolor.h"
-#import "TiApp.h"
-
 #ifdef USE_TI_UIATTRIBUTEDSTRING
 #import "TiUIAttributedStringProxy.h"
 #endif

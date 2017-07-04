@@ -5,7 +5,6 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #import "CodecModule.h"
-#import "TiBuffer.h"
 
 #ifdef USE_TI_CODEC
 

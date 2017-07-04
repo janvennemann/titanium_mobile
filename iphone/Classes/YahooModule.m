@@ -6,11 +6,10 @@
  */
 #ifdef USE_TI_YAHOO
 
+@import TitaniumKit;
 #import "YahooModule.h"
 #include <CommonCrypto/CommonHMAC.h>
-#include "Base64Transcoder.h"
 #import "SBJSON.h"
-#import "TiApp.h"
 
 #ifdef YQL_OAUTH
 const NSString *apiEndpoint = @"http://query.yahooapis.com/v1/yql?format=json";

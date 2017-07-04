@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIDASHBOARDVIEW
 
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @interface TiUIDashboardViewProxy : TiViewProxy {
 }

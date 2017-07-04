@@ -6,7 +6,7 @@
  */
 #import "TiNetworkSocketProxy.h"
 #import "TiNetworkSocketTCPProxy.h"
-#import "TiBase.h"
+@import TitaniumKit;
 
 #ifdef USE_TI_NETWORKSOCKET
 @implementation TiNetworkSocketProxy

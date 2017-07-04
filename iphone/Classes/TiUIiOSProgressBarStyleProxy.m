@@ -6,8 +6,8 @@
  */
 #ifdef USE_TI_UIIOSPROGRESSBARSTYLE
 
+@import TitaniumKit;
 #import "TiUIiOSProgressBarStyleProxy.h"
-#import "TiBase.h"
 
 @implementation TiUIiOSProgressBarStyleProxy
 

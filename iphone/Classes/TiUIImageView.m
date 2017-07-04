@@ -6,16 +6,8 @@
  */
 #ifdef USE_TI_UIIMAGEVIEW
 
-#import "TiBase.h"
+@import TitaniumKit;
 #import "TiUIImageView.h"
-#import "TiUtils.h"
-#import "ImageLoader.h"
-#import "OperationQueue.h"
-#import "TiViewProxy.h"
-#import "TiProxy.h"
-#import "TiBlob.h"
-#import "TiFile.h"
-#import "UIImage+Resize.h"
 #import "TiUIImageViewProxy.h"
 #import <CommonCrypto/CommonDigest.h>
 

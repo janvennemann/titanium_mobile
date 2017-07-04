@@ -7,9 +7,7 @@
 #ifdef USE_TI_MEDIAVIDEOPLAYER
 
 #import <MediaPlayer/MediaPlayer.h>
-#import "TiViewProxy.h"
-#import "TiColor.h"
-#import "TiFile.h"
+@import TitaniumKit;
 
 @interface TiMediaVideoPlayerProxy : TiViewProxy {
 @protected

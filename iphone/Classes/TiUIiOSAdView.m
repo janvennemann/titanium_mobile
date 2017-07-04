@@ -6,8 +6,6 @@
  */
 
 #import "TiUIiOSAdView.h"
-#import "TiUtils.h"
-#import "APSAnalytics.h"
 
 #ifdef USE_TI_UIIOSADVIEW
 

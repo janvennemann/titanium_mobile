@@ -6,13 +6,9 @@
  */
 #ifdef USE_TI_UIWEBVIEW
 
-#import "TiBase.h"
+@import TitaniumKit;
 #import "XHRBridge.h"
-#import "TiHost.h"
-#import "TiProxy.h"
 #import "SBJSON.h"
-#import "TiModule.h"
-#import "Mimetypes.h"
 
 static XHRBridge *xhrBridge = nil;
 

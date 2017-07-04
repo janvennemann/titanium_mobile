@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIOSCOVERFLOWVIEW
 
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiOSCoverFlowViewProxy : TiViewProxy 
 {

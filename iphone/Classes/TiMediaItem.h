@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "TiBlob.h"
-#import "TiProxy.h"
+@import TitaniumKit;
 
 // Not 'officially' a proxy since we don't want users being able to create these; they're
 // generated internally only for the media player.

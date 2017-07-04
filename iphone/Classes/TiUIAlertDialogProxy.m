@@ -6,8 +6,7 @@
  */
 
 #import "TiUIAlertDialogProxy.h"
-#import "TiUtils.h"
-#import "TiApp.h"
+@import TitaniumKit;
 
 static NSCondition* alertCondition;
 static BOOL alertShowing = NO;

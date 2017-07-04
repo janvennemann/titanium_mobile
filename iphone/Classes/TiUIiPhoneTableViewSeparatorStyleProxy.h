@@ -6,7 +6,7 @@
  */
 #if defined(USE_TI_UIIPHONETABLEVIEWSEPARATORSTYLE) || defined(USE_TI_UIIPHONELISTVIEWSEPARATORSTYLE)
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiPhoneTableViewSeparatorStyleProxy : TiProxy {
 

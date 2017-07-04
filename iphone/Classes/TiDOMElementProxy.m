@@ -11,7 +11,7 @@
 #import "TiDOMNodeListProxy.h"
 #import "TiDOMAttrProxy.h"
 #import "TiDOMNamedNodeMapProxy.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 #import "TiDOMValidator.h"
 
 @implementation TiDOMElementProxy

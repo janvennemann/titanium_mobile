@@ -15,9 +15,7 @@
 #endif
 
 #import "TiMediaSoundProxy.h"
-#import "TiUtils.h"
-#import "TiBlob.h"
-#import "TiFile.h"
+@import TitaniumKit;
 #import "TiMediaAudioSession.h"
 
 @implementation TiMediaSoundProxy

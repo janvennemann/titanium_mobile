@@ -5,9 +5,8 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #ifdef USE_TI_UIIOSPREVIEWCONTEXT
-#import "TiViewProxy.h"
-#import "TiWindowProxy.h"
-#import "TiApp.h"
+
+@import TitaniumKit;
 #import "TiPreviewingDelegate.h"
 
 @interface TiUIiOSPreviewContextProxy : TiViewProxy

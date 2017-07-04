@@ -5,7 +5,8 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #ifdef USE_TI_UIIOSBLURVIEW
-#import "TiUIView.h"
+
+@import TitaniumKit;
 
 @interface TiUIiOSBlurView : TiUIView {
     UIVisualEffectView *blurView;

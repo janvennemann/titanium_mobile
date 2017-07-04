@@ -7,7 +7,7 @@
 #ifdef USE_TI_UIWEBVIEW
 
 #import <Foundation/Foundation.h>
-#import "Bridge.h"
+@import TitaniumKit;
 
 @class XHRBridge;
 

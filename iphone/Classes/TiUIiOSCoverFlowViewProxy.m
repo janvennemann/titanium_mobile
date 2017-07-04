@@ -7,7 +7,7 @@
 #ifdef USE_TI_UIIOSCOVERFLOWVIEW
 
 #import "TiUIiOSCoverFlowViewProxy.h"
-#import "TiBase.h"
+@import TitaniumKit;
 #import "TiUIiOSCoverFlowView.h"
 
 NSArray* coverflowKeySequence;

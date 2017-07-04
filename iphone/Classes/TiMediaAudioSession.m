@@ -7,7 +7,7 @@
 #ifdef USE_TI_MEDIA
 
 #import "TiMediaAudioSession.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 #if IS_XCODE_8
 #import <AVFoundation/AVFAudio.h>

@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIPHONESYSTEMICON
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiPhoneSystemIconProxy : TiProxy {
 

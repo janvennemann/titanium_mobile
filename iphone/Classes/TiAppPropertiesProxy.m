@@ -7,8 +7,7 @@
 #ifdef USE_TI_APP
 
 #import "TiAppPropertiesProxy.h"
-#import "TiUtils.h"
-#import "TiApp.h"
+@import TitaniumKit;
 
 @implementation TiAppPropertiesProxy {
 	NSData *_defaultsNull;

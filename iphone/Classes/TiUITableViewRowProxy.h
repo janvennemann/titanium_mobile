@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_UITABLEVIEW
 
-#import "TiViewProxy.h"
-#import "TiDimension.h"
+@import TitaniumKit;
 
 @class TiUITableViewCell;
 @class TiUITableView;

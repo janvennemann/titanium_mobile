@@ -7,7 +7,7 @@
 #ifdef USE_TI_PLATFORM
 
 #import "TiPlatformDisplayCaps.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 @implementation TiPlatformDisplayCaps
 

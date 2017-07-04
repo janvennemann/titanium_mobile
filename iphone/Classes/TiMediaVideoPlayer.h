@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_MEDIAVIDEOPLAYER
 
-#import "TiUIView.h"
+@import TitaniumKit;
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface TiMediaVideoPlayer : TiUIView {

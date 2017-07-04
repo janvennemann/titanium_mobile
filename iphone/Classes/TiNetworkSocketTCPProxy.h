@@ -11,8 +11,9 @@
 // * Maybe even synchronize with the context itself (when TIMOB-6990 complete)
 
 #ifdef USE_TI_NETWORKSOCKET
+
+@import TitaniumKit;
 #import <Foundation/Foundation.h>
-#import "TiStreamProxy.h"
 #import "AsyncSocket.h"
 #import "TiNetworkSocketProxy.h"
 

@@ -6,14 +6,12 @@
  */
 #ifdef USE_TI_NETWORK
 
+@import TitaniumKit;
 #import "TiNetworkCookieProxy.h"
 #import "NetworkModule.h"
 #import "Reachability.h"
-#import "TiApp.h"
 #import "SBJSON.h"
-#import "TiBlob.h"
 #import "TiNetworkSocketProxy.h"
-#import "TiUtils.h"
 
 NSString* const INADDR_ANY_token = @"INADDR_ANY";
 static NSOperationQueue *_operationQueue = nil;

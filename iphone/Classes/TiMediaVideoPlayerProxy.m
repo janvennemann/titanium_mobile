@@ -11,13 +11,8 @@
 
 #import "TiMediaVideoPlayerProxy.h"
 #import "TiMediaVideoPlayer.h"
-#import "TiUtils.h"
-#import "Webcolor.h"
-#import "TiFile.h"
-#import "TiViewProxy.h"
-#import "TiBlob.h"
+@import TitaniumKit;
 #import "TiMediaAudioSession.h"
-#import "TiApp.h"
 
 /** 
  * Design Notes:

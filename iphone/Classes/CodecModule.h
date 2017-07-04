@@ -5,7 +5,7 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #import <Foundation/Foundation.h>
-#import "TiModule.h"
+@import TitaniumKit;
 
 #ifdef USE_TI_CODEC
 

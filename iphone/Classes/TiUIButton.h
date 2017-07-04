@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIBUTTON
 
-#import "TiUIView.h"
+@import TitaniumKit;
 
 @interface TiUIButton : TiUIView {
 @private

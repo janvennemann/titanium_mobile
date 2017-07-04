@@ -9,7 +9,7 @@
 #include <string.h>
 #include <limits.h>
 #import "TiDOMCharacterDataProxy.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 @implementation TiDOMCharacterDataProxy
 

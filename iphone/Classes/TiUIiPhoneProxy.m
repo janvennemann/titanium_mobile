@@ -7,8 +7,7 @@
 #ifdef USE_TI_UIIPHONE
 
 #import "TiUIiPhoneProxy.h"
-#import "TiUtils.h"
-#import "TiApp.h"
+@import TitaniumKit;
 
 
 #ifdef USE_TI_UIIPHONEANIMATIONSTYLE

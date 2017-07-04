@@ -5,9 +5,8 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
+@import TitaniumKit;
 #import "TiUISwitch.h"
-#import "TiUtils.h"
-#import "TiViewProxy.h"
 
 @implementation TiUISwitch
 

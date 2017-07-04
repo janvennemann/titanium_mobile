@@ -7,7 +7,7 @@
 #ifdef USE_TI_UIPICKER
 
 #import "TiUIPicker.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 #import "TiUIPickerRowProxy.h"
 #import "TiUIPickerColumnProxy.h"
 

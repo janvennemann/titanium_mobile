@@ -6,7 +6,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "TiProxy.h"
+@import TitaniumKit;
 #ifdef USE_TI_NETWORKSOCKET
 typedef enum {
     SOCKET_INITIALIZED = 1<<0,

@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIPROGRESSBAR
 
-#import "TiUIView.h"
+@import TitaniumKit;
 
 @class WebFont;
 @interface TiUIProgressBar : TiUIView {

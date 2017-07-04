@@ -6,14 +6,8 @@
  */
 #ifdef USE_TI_MEDIA
 
+@import TitaniumKit;
 #import "MediaModule.h"
-#import "TiUtils.h"
-#import "TiBlob.h"
-#import "TiFile.h"
-#import "TiApp.h"
-#import "Mimetypes.h"
-#import "TiViewProxy.h"
-#import "Ti2DMatrix.h"
 #import "SCListener.h"
 #import "TiMediaAudioSession.h"
 #import "TiMediaMusicPlayer.h"

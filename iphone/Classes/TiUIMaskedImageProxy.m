@@ -8,8 +8,7 @@
 
 #import "TiUIMaskedImageProxy.h"
 #import "TiUIMaskedImage.h"
-
-#import "TiUtils.h"
+@import TitaniumKit;
 
 @implementation TiUIMaskedImageProxy
 

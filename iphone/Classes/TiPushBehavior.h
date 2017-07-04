@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_UIIOSANIMATOR
 #ifdef USE_TI_UIIOSPUSHBEHAVIOR
-#import "TiProxy.h"
-#import "TiViewProxy.h"
+@import TitaniumKit;
 #import "TiAnimatorProxy.h"
 @interface TiPushBehavior : TiProxy <TiBehaviorProtocol> {
     BOOL _active;

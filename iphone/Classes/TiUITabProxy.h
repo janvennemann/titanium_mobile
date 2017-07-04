@@ -6,9 +6,7 @@
  */
 #ifdef USE_TI_UITAB
 
-#import "TiViewProxy.h"
-#import "TiTab.h"
-#import "TiWindowProxy.h"
+@import TitaniumKit;
 
 @class TiUITabGroupProxy;
 

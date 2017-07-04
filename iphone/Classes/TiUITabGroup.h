@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UITAB
 
-#import "TiUIView.h"
+@import TitaniumKit;
 
 //To handle the more tab, we're a delegate of it.
 @class TiUITabProxy;

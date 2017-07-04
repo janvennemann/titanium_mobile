@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_UIATTRIBUTEDSTRING
 #import "TiUIAttributedStringProxy.h"
-#import "TiProxy.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 @implementation TiUIAttributedStringProxy
 

@@ -8,8 +8,6 @@
 
 #import "TiUITabGroup.h"
 #import "TiUITabProxy.h"
-#import "TiUtils.h"
-#import "TiColor.h"
 #import "TiUITabGroupProxy.h"
 
 @implementation TiUITabGroup

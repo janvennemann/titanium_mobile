@@ -5,7 +5,7 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #if defined(USE_TI_UIIOSTABLEVIEWSTYLE) || defined(USE_TI_UIIOSLISTVIEWSTYLE)
-#import "TiBase.h"
+@import TitaniumKit;
 #import "TiUIiOSTableViewStyleProxy.h"
 
 @implementation TiUIiOSTableViewStyleProxy

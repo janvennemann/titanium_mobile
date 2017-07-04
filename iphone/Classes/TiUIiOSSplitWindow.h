@@ -5,7 +5,7 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #ifdef USE_TI_UIIOSSPLITWINDOW
-#import "TiUIWindow.h"
+@import TitaniumKit;
 
 @interface TiUIiOSSplitWindow : TiUIWindow {
 @private

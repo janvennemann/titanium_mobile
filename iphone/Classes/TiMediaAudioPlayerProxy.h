@@ -8,7 +8,7 @@
 
 
 #import "AudioStreamer/AudioStreamer.h"
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiMediaAudioPlayerProxy : TiProxy<AudioStreamerDelegate> {
 @private

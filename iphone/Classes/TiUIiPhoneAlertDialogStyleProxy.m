@@ -7,7 +7,7 @@
 #ifdef USE_TI_UIIPHONEALERTDIALOGSTYLE
 
 #import "TiUIiPhoneAlertDialogStyleProxy.h"
-#import "TiBase.h"
+@import TitaniumKit;
 
 @implementation TiUIiPhoneAlertDialogStyleProxy
 

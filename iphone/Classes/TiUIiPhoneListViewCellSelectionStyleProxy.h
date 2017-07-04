@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIPHONELISTVIEWCELLSELECTIONSTYLE
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 @interface TiUIiPhoneListViewCellSelectionStyleProxy : TiProxy {
 

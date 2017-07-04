@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UISCROLLABLEVIEW
 
-#import "TiViewProxy.h"
+@import TitaniumKit;
 #import <libkern/OSAtomic.h>
 
 @interface TiUIScrollableViewProxy : TiViewProxy 

@@ -6,12 +6,10 @@
  */
 #ifdef USE_TI_MEDIA
 
-#import "TiModule.h"
-#import "KrollCallback.h"
+@import TitaniumKit;
 #import "TiMediaAudioSession.h"
 #import "MediaPlayer/MediaPlayer.h"
 #import "TiMediaMusicPlayer.h"
-#import "TiViewProxy.h"
 
 @interface MediaModule : TiModule
 <

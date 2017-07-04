@@ -7,7 +7,7 @@
 #ifdef USE_TI_UIIPHONELISTVIEWSEPARATORSTYLE
 
 #import "TiUIiPhoneListViewSeparatorStyleProxy.h"
-#import "TiBase.h"
+@import TitaniumKit;
 
 @implementation TiUIiPhoneListViewSeparatorStyleProxy
 

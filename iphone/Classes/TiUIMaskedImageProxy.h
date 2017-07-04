@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIMASKEDIMAGE
 
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @interface TiUIMaskedImageProxy : TiViewProxy {
 

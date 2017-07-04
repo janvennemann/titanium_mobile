@@ -19,7 +19,6 @@
  */
 
 #include "TiNetworkCookieProxy.h"
-#include "TiUtils.h"
 
 @implementation TiNetworkCookieProxy
 

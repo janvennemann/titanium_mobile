@@ -7,8 +7,6 @@
 #ifdef USE_TI_UIIOSCOVERFLOWVIEW
 
 #import "TiUIiOSCoverFlowView.h"
-#import "ImageLoader.h"
-#import "TiBlob.h"
 #import "AFOpenFlow/UIImageExtras.h"
 
 @implementation TiUIiOSCoverFlowView

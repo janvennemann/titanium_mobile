@@ -7,11 +7,7 @@
 #ifdef USE_TI_UILISTVIEW
 
 #import "TiUIListItem.h"
-#import "TiUtils.h"
-#import "TiViewProxy.h"
-#import "ImageLoader.h"
-#import "Webcolor.h"
-#import "TiApp.h"
+@import TitaniumKit;
 
 @implementation TiUIListItem {
 	TiUIListItemProxy *_proxy;

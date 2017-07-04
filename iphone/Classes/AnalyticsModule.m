@@ -6,7 +6,6 @@
  */
 
 #import "AnalyticsModule.h"
-#import "APSAnalytics/APSAnalytics.h"
 #import "SBJSON.h"
 extern BOOL const TI_APPLICATION_ANALYTICS;
 static NSMutableArray* _filteredEvents;

@@ -10,8 +10,7 @@
 #import "ContactsModule.h"
 #import "TiContactsPerson.h"
 #import "TiContactsGroup.h"
-#import "TiApp.h"
-#import "TiBase.h"
+@import TitaniumKit;
 
 #pragma Backwards compatibility for pre-iOS 6.0
 

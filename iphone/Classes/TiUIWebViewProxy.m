@@ -6,11 +6,9 @@
  */
 #ifdef USE_TI_UIWEBVIEW
 
+@import TitaniumKit;
 #import "TiUIWebViewProxy.h"
 #import "TiUIWebView.h"
-#import "TiUtils.h"
-#import "TiBlob.h"
-#import "TiHost.h"
 
 @implementation TiUIWebViewProxy
 

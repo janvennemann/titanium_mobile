@@ -6,8 +6,8 @@
  */
 #ifdef USE_TI_PLATFORM
 
+@import TitaniumKit;
 #import "PlatformModule.h"
-#import "TiApp.h"
 
 #import <sys/sysctl.h>  
 #import <mach/mach.h>

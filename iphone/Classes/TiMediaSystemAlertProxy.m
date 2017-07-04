@@ -7,7 +7,7 @@
 #ifdef USE_TI_MEDIA
 
 #import "TiMediaSystemAlertProxy.h"
-#import "TiUtils.h"
+@import TitaniumKit;
 
 @implementation TiMediaSystemAlertProxy
  

@@ -8,7 +8,7 @@
 
 #ifdef USE_TI_FILESYSTEM
 
-#import "TiFile.h"
+@import TitaniumKit;
 
 @interface TiFilesystemBlobProxy : TiFile {
 @private

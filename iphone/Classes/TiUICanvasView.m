@@ -7,8 +7,7 @@
 #ifdef USE_TI_UICANVAS
 
 #import "TiUICanvasView.h"
-#import "TiUtils.h"
-#import "Webcolor.h"
+@import TitaniumKit;
 
 enum  
 {

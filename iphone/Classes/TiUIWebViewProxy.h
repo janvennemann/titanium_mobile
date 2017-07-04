@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_UIWEBVIEW
 
-#import "TiViewProxy.h"
-#import "TiEvaluator.h"
+@import TitaniumKit;
 
 @interface TiUIWebViewProxy : TiViewProxy<TiEvaluator> {
 @private

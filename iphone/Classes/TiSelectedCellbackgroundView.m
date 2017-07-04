@@ -7,7 +7,8 @@
 #if defined(USE_TI_UITABLEVIEW) || defined(USE_TI_UILISTVIEW)
 
 #import "TiSelectedCellbackgroundView.h"
-#import "TiUtils.h"
+@import TitaniumKit;
+
 static void addRoundedRectToPath(CGContextRef context, CGRect rect,
 								 float ovalWidth,float ovalHeight)
 

@@ -7,9 +7,7 @@
 #ifdef USE_TI_UIMASKEDIMAGE
 
 #import "TiUIMaskedImage.h"
-#import "TiUtils.h"
-#import "ImageLoader.h"
-#import "Webcolor.h"
+@import TitaniumKit;
 
 @implementation TiUIMaskedImage
 

@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UILABEL
 
-#import "TiUIView.h"
+@import TitaniumKit;
 
 @interface TiUILabel : TiUIView<LayoutAutosizing> {
 @private

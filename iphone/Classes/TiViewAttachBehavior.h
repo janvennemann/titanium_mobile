@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIOSANIMATOR
 #ifdef USE_TI_UIIOSVIEWATTACHMENTBEHAVIOR
-#import "TiProxy.h"
+@import TitaniumKit;
 #import "TiAnimatorProxy.h"
 @interface TiViewAttachBehavior : TiProxy <TiBehaviorProtocol> {
     CGFloat _damping;

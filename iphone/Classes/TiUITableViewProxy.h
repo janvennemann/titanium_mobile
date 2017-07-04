@@ -10,7 +10,7 @@
 #define USE_TI_UISEARCHBAR
 #endif
 
-#include "TiViewProxy.h"
+@import TitaniumKit;
 
 @class TiUITableViewRowProxy;
 @class TiUITableViewSectionProxy;

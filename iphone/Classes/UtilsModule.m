@@ -7,10 +7,7 @@
 #ifdef USE_TI_UTILS
 
 #import "UtilsModule.h"
-#import "TiUtils.h"
-#import "Base64Transcoder.h"
-#import "TiBlob.h"
-#import "TiFile.h"
+@import TitaniumKit;
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonHMAC.h>
 

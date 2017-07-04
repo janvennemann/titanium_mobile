@@ -8,8 +8,7 @@
 
 #import "TiDatabaseProxy.h"
 #import "TiDatabaseResultSetProxy.h"
-#import "TiUtils.h"
-#import "TiFilesystemFileProxy.h"
+@import TitaniumKit;
 
 @implementation TiDatabaseProxy
 

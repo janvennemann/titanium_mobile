@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIPHONEROWANIMATIONSTYLE
 
-#import "TiProxy.h"
+@import TitaniumKit;
 
 
 @interface TiUIiPhoneRowAnimationStyleProxy : TiProxy {

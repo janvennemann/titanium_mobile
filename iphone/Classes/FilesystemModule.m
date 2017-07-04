@@ -6,11 +6,9 @@
  */
 #ifdef USE_TI_FILESYSTEM
 
+@import TitaniumKit;
 #import "FilesystemModule.h"
-#import "TiFilesystemFileProxy.h"
 #import "TiFilesystemBlobProxy.h"
-#import "TiFilesystemFileStreamProxy.h"
-#import "TiHost.h"
 #import <CommonCrypto/CommonDigest.h>
 
 #if TARGET_IPHONE_SIMULATOR 

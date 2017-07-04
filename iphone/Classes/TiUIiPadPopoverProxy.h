@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_UIIPADPOPOVER
 
-#import "TiViewProxy.h"
-#import "TiViewController.h"
+@import TitaniumKit;
 
 //The iPadPopoverProxy should be seen more as like a window or such, because
 //The popover controller will contain the viewController, which has the view.

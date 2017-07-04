@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UILABEL
 
-#import "TiViewProxy.h"
+@import TitaniumKit;
 
 @interface TiUILabelProxy : TiViewProxy {
 

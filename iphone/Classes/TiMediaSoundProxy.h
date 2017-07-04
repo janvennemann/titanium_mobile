@@ -6,8 +6,7 @@
  */
 #ifdef USE_TI_MEDIASOUND
 
-#import "TiProxy.h"
-#import "TiFile.h"
+@import TitaniumKit;
 #if IS_XCODE_8
 #import <AVFoundation/AVFAudio.h>
 #else

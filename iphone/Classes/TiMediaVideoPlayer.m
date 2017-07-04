@@ -7,9 +7,7 @@
 #ifdef USE_TI_MEDIAVIDEOPLAYER
 
 #import "TiMediaVideoPlayer.h"
-#import "TiViewProxy.h"
-#import "TiUtils.h"
-#import "Webcolor.h"
+@import TitaniumKit;
 
 
 @implementation TiMediaVideoPlayer

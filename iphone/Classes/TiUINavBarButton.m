@@ -7,13 +7,10 @@
 #ifdef USE_TI_UIBUTTON
 
 #import "TiUINavBarButton.h"
-#import "TiUtils.h"
-#import "ImageLoader.h"
+@import TitaniumKit;
 #import "TiUIButtonProxy.h"
 #import "TiUIButton.h"
 #import "TiButtonUtil.h"
-#import "TiUIView.h"
-#import "TiBlob.h"
 
 #define NAVBAR_MEMORY_DEBUG 0
 

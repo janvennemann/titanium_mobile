@@ -6,7 +6,7 @@
  */
 #ifdef USE_TI_UIIOSANIMATOR
 #ifdef USE_TI_UIIOSDYNAMICITEMBEHAVIOR
-#import "TiProxy.h"
+@import TitaniumKit;
 #import "TiAnimatorProxy.h"
 @interface TiDynamicItemBehavior : TiProxy <TiBehaviorProtocol>{
     NSMutableArray* _items;
