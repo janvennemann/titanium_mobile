@@ -993,6 +993,9 @@ formats.forEach(function (format) {
 		case 'typescript':
 			render = exportData;
 			output = pathMod.join(outputPath, 'index.d.ts');
+		case 'json-raw':
+			render = JSON.stringify(exportData, null, '    ');
+			output = pathMod.join(outputPath, 'api.json');
 	}
 
 	if (!~[ 'addon' ].indexOf(format)) {
