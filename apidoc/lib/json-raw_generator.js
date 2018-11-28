@@ -40,7 +40,8 @@ function exportDeprecated(api) {
 	if ('deprecated' in api && api.deprecated) {
 		return {
 			notes: api.deprecated.notes || '',
-			since: api.deprecated.since
+			since: api.deprecated.since,
+			removed: api.deprecated.removed
 		};
 	}
 	return null;
