@@ -1051,6 +1051,9 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
   }
   __block id _thisObject = thisObject;
   void (^mainBlock)(void) = ^{
+    if (finalized) {
+      return;
+    }
     if (![_thisObject isKindOfClass:[KrollObject class]]) {
       _thisObject = [(KrollBridge *)[context delegate] registerProxy:thisObject];
     }
@@ -1089,7 +1092,7 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
       block(TiValueToId(context, result));
     };
   };
-  TiThreadPerformOnMainThread(mainBlock, NO);
+  TiThreadPerformOnMainThread(mainBlock, YES);
 }
 
 - (void)noteKrollObject:(KrollObject *)value forKey:(NSString *)key
