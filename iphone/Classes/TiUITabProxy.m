@@ -114,14 +114,15 @@
 
   @try {
     TiWindowProxy *window = [args objectAtIndex:0];
-    BOOL animated = ([args count] > 1) ? [TiUtils boolValue:@"animated" properties:[args objectAtIndex:1] def:YES] : YES;
-    [controllerStack addObject:[window hostingController]];
 
     // Prevent UIKit  crashes when trying to push a window while it's already in the nav stack (e.g. on really slow devices)
     if ([[[self rootController].navigationController viewControllers] containsObject:window.hostingController]) {
       NSLog(@"[WARN] Trying to push a view controller that is already in the navigation window controller stack. Skipping open …");
       return;
     }
+
+    BOOL animated = ([args count] > 1) ? [TiUtils boolValue:@"animated" properties:[args objectAtIndex:1] def:YES] : YES;
+    [controllerStack addObject:[window hostingController]];
 
     [[[self rootController] navigationController] pushViewController:[window hostingController] animated:animated];
   } @catch (NSException *ex) {
