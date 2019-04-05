@@ -133,10 +133,6 @@ typedef NS_ENUM(NSInteger, ModuleType) {
   [super dealloc];
 }
 
-- (void)gc
-{
-}
-
 - (BOOL)hasProperty:(NSString *)propertyName
 {
   if (dynprops != nil && dynprops[propertyName] != nil) {
@@ -274,7 +270,6 @@ CFMutableSetRef krollBridgeRegistry = nil;
   OSSpinLockLock(&proxyLock);
   if (registeredProxies == NULL) {
     OSSpinLockUnlock(&proxyLock);
-    [self gc];
     return;
   }
 
@@ -305,8 +300,6 @@ CFMutableSetRef krollBridgeRegistry = nil;
       }
     }
   }
-
-  [self gc];
 }
 
 #if KROLLBRIDGE_MEMORY_DEBUG == 1
@@ -535,12 +528,6 @@ CFMutableSetRef krollBridgeRegistry = nil;
   }
 }
 
-- (void)gc
-{
-  [context gc];
-  [titanium gc];
-}
-
 #pragma mark Delegate
 
 - (void)willStartNewContext:(KrollContext *)kroll
@@ -644,7 +631,6 @@ CFMutableSetRef krollBridgeRegistry = nil;
     NSNotification *notification = [NSNotification notificationWithName:kTiContextShutdownNotification object:self];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
   }
-  [titanium gc];
 
   if (shutdownCondition) {
     [shutdownCondition lock];

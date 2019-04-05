@@ -15,17 +15,17 @@
 
 - (id)version
 {
-  return @"__VERSION__";
+  return @"8.1.0";
 }
 
 - (id)buildDate
 {
-  return @"__TIMESTAMP__";
+  return @"3/26/2019 19:05";
 }
 
 - (id)buildHash
 {
-  return @"__GITHASH__";
+  return @"500f7b568e";
 }
 
 + (BOOL)shouldRegisterOnInit

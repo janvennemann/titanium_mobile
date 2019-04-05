@@ -1044,7 +1044,6 @@ TI_INLINE void waitForMemoryPanicCleared(); //WARNING: This must never be run on
 
   // suspend any image loading
   [[ImageLoader sharedLoader] suspend];
-  [kjsBridge gc];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
