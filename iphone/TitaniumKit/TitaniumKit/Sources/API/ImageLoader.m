@@ -315,7 +315,6 @@ DEFINE_EXCEPTIONS
 - (id)init
 {
   if (self = [super init]) {
-    WARN_IF_BACKGROUND_THREAD_OBJ; //NSNotificationCenter is not threadsafe!
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveMemoryWarning:)
                                                  name:UIApplicationDidReceiveMemoryWarningNotification
@@ -327,10 +326,6 @@ DEFINE_EXCEPTIONS
 
 - (void)dealloc
 {
-  WARN_IF_BACKGROUND_THREAD_OBJ; //NSNotificationCenter is not threadsafe!
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:UIApplicationDidReceiveMemoryWarningNotification
-                                                object:nil];
   RELEASE_TO_NIL(cache);
   RELEASE_TO_NIL(queue);
   RELEASE_TO_NIL(timeout);
@@ -592,10 +587,7 @@ DEFINE_EXCEPTIONS
 
   UIImage *image = [[self entryForKey:url] imageForSize:[request imageSize]];
   if (image != nil) {
-    TiThreadPerformOnMainThread(^{
-      [self notifyRequest:request imageCompleted:image];
-    },
-        NO);
+    [self notifyRequest:request imageCompleted:image];
     return;
   }
 

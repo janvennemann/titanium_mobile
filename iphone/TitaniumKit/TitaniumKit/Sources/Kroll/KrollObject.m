@@ -284,10 +284,7 @@ bool KrollSetProperty(JSContextRef jsContext, JSObjectRef object, JSStringRef pr
     } else {
       [o forgetObjectForTiString:prop context:jsContext];
     }
-    TiThreadPerformOnMainThread(^{
-      [o setValue:v forKey:name];
-    },
-        YES);
+    [o setValue:v forKey:name];
     return true;
   }
   @catch (NSException *ex) {
@@ -1043,53 +1040,51 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 {
   [self invokeCallbackForKey:key withObject:eventData thisObject:thisObject onDone:nil];
 }
+
 - (void)invokeCallbackForKey:(NSString *)key withObject:(NSDictionary *)eventData thisObject:(KrollObject *)thisObject onDone:(void (^)(id result))block
 {
 
   if (finalized) {
     return;
   }
-  __block id _thisObject = thisObject;
-  void (^mainBlock)(void) = ^{
-    if (![_thisObject isKindOfClass:[KrollObject class]]) {
-      _thisObject = [(KrollBridge *)[context delegate] registerProxy:thisObject];
-    }
 
-    JSValueRef exception = NULL;
+  if (![thisObject isKindOfClass:[KrollObject class]]) {
+    thisObject = [(KrollBridge *)[context delegate] registerProxy:thisObject];
+  }
 
-    JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContext, propsObject, kTiStringPropertyKey, &exception);
+  JSValueRef exception = NULL;
 
-    jsProxyHash = JSValueToObject(jsContext, jsProxyHash, &exception);
-    if ((jsProxyHash == NULL) || (JSValueGetType(jsContext, jsProxyHash) != kJSTypeObject)) {
-      if (block != nil) {
-        block(nil);
-      }
-      return;
-    }
+  JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContext, propsObject, kTiStringPropertyKey, &exception);
 
-    JSStringRef nameRef = JSStringCreateWithCFString((CFStringRef)key);
-    JSObjectRef jsCallback = (JSObjectRef)JSObjectGetProperty(jsContext, jsProxyHash, nameRef, NULL);
-    JSStringRelease(nameRef);
-
-    if ((jsCallback == NULL) || (JSValueGetType(jsContext, jsCallback) != kJSTypeObject)) {
-      if (block != nil) {
-        block(nil);
-      }
-      return;
-    }
-
-    JSValueRef jsEventData = ConvertIdTiValue(context, eventData);
-    JSValueRef result = JSObjectCallAsFunction(jsContext, jsCallback, [_thisObject jsobject], 1, &jsEventData, &exception);
-    if (exception != NULL) {
-      id excm = [KrollObject toID:context value:exception];
-      [[TiExceptionHandler defaultExceptionHandler] reportScriptError:[TiUtils scriptErrorValue:excm]];
-    }
-
+  jsProxyHash = JSValueToObject(jsContext, jsProxyHash, &exception);
+  if ((jsProxyHash == NULL) || (JSValueGetType(jsContext, jsProxyHash) != kJSTypeObject)) {
     if (block != nil) {
-      block(TiValueToId(context, result));
-    };
+      block(nil);
+    }
+    return;
+  }
+
+  JSStringRef nameRef = JSStringCreateWithCFString((CFStringRef)key);
+  JSObjectRef jsCallback = (JSObjectRef)JSObjectGetProperty(jsContext, jsProxyHash, nameRef, NULL);
+  JSStringRelease(nameRef);
+
+  if ((jsCallback == NULL) || (JSValueGetType(jsContext, jsCallback) != kJSTypeObject)) {
+    if (block != nil) {
+      block(nil);
+    }
+    return;
+  }
+
+  JSValueRef jsEventData = ConvertIdTiValue(context, eventData);
+  JSValueRef result = JSObjectCallAsFunction(jsContext, jsCallback, [thisObject jsobject], 1, &jsEventData, &exception);
+  if (exception != NULL) {
+    id excm = [KrollObject toID:context value:exception];
+    [[TiExceptionHandler defaultExceptionHandler] reportScriptError:[TiUtils scriptErrorValue:excm]];
+  }
+
+  if (block != nil) {
+    block(TiValueToId(context, result));
   };
-  TiThreadPerformOnMainThread(mainBlock, NO);
 }
 
 - (void)noteKrollObject:(KrollObject *)value forKey:(NSString *)key
@@ -1323,7 +1318,6 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
   }
 }
 
-#ifdef USE_JSCORE_FRAMEWORK
 /**
  Protects the underlying JSObjectRef from being accidentally GC'ed.
 
@@ -1342,16 +1336,7 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
     return;
   }
 
-#ifdef TI_USE_KROLL_THREAD
-  if (![context isKJSThread]) {
-    NSOperation *safeProtect = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(applyGarbageCollectionSafeguard) object:nil];
-    [context enqueue:safeProtect];
-    [safeProtect release];
-    return;
-  }
-#endif
-
-  TiValueProtect(jsContext, jsobject);
+  JSValueProtect(jsContext, jsobject);
   self.gcSafeguarded = YES;
 }
 
@@ -1372,18 +1357,8 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
     return;
   }
 
-#ifdef TI_USE_KROLL_THREAD
-  if (![context isKJSThread]) {
-    NSOperation *safeUnprotect = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(removeGarbageCollectionSafeguard) object:nil];
-    [context enqueue:safeUnprotect];
-    [safeUnprotect release];
-    return;
-  }
-#endif
-
-  TiValueUnprotect(jsContext, jsobject);
+  JSValueUnprotect(jsContext, jsobject);
   self.gcSafeguarded = NO;
 }
-#endif
 
 @end

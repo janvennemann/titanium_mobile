@@ -14,22 +14,8 @@
 
 @implementation TiModule
 
-- (void)unregisterForNotifications
-{
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)dealloc
 {
-  // Have to jump through a hoop here to keep the dealloc block from
-  // retaining 'self' by creating a __block access ref. Note that
-  // this is only safe as long as the block until completion is YES.
-  __block id bself = self;
-  TiThreadPerformOnMainThread(^{
-    [bself unregisterForNotifications];
-  },
-      YES);
-
   RELEASE_TO_NIL(host);
   if (classNameLookup != NULL) {
     CFRelease(classNameLookup);
@@ -95,7 +81,6 @@
 
 - (void)registerForNotifications
 {
-  WARN_IF_BACKGROUND_THREAD_OBJ; //NSNotificationCenter is not threadsafe!
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shutdown:) name:kTiShutdownNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(suspend:) name:kTiSuspendNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paused:) name:kTiPausedNotification object:nil];
@@ -110,10 +95,8 @@
     classNameLookup = CFDictionaryCreateMutable(kCFAllocatorDefault, 1, &kCFTypeDictionaryKeyCallBacks, NULL);
     //We do not retain the Class, but simply assign them.
   }
-  TiThreadPerformOnMainThread(^{
-    [self registerForNotifications];
-  },
-      NO);
+
+  [self registerForNotifications];
 }
 
 - (void)_configure

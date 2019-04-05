@@ -29,8 +29,6 @@
 
 - (void)shutdown:(NSCondition *)condition;
 
-- (void)gc;
-
 - (TiHost *)host;
 
 - (NSString *)basename;

@@ -10,6 +10,7 @@
 #ifndef DISABLE_TI_LOG_SERVER
 #import "TiLogServer.h"
 #endif
+#import "KrollContext.h"
 
 #include <pthread.h>
 #include <stdarg.h>
@@ -175,5 +176,42 @@ void TiThreadPerformOnMainThread(void (^mainBlock)(void), BOOL waitForFinish)
     }
   } else {
     dispatch_async(dispatch_get_main_queue(), mainBlock);
+  }
+}
+
+@implementation NSObject (TiBlocksAdditions)
+
+- (void)callAsBlock
+{
+  void (^block)(void) = (id)self;
+  block();
+}
+
+@end
+
+/**
+ * Runs a block on the thread the KrollContext was started in. This is
+ * mainly used to make sure to switch back to the JS thread from completions
+ * handlers that may run on a different thread, e.g. most UNUserNotificationCenter
+ * methods.
+ *
+ * DO NOT USE INSIDE KROLL CORE OR WHEN DEALING WITH SINGLE JSCORE OPERATONS.
+ * This proved to be error prone. Switch over to the right thread before calling
+ * back into Kroll / JSCore.
+ */
+void TiRunOnJSThread(KrollContext *ctx, void (^mainBlock)(void), BOOL waitUntilDone)
+{
+  if (!ctx.isKJSThread) {
+    [[[mainBlock copy] autorelease] performSelector:@selector(callAsBlock) onThread:ctx.jsThread withObject:nil waitUntilDone:waitUntilDone];
+  } else {
+    if (waitUntilDone) {
+      mainBlock();
+    } else {
+      if (ctx.jsThread == NSThread.mainThread) {
+        dispatch_async(dispatch_get_main_queue(), mainBlock);
+      } else {
+        [[[mainBlock copy] autorelease] performSelector:@selector(callAsBlock) onThread:NSThread.currentThread withObject:nil waitUntilDone:waitUntilDone];
+      }
+    }
   }
 }

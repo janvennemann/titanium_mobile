@@ -31,7 +31,6 @@
 @property (nonatomic, readwrite, retain) NSString *type;
 
 - (id)initWithCallback:(JSValueRef)function_ thisObject:(JSObjectRef)thisObject_ context:(KrollContext *)context_;
-- (void)callAsync:(NSArray *)args thisObject:(id)thisObject_;
 - (id)call:(NSArray *)args thisObject:(id)thisObject_;
 - (JSObjectRef)function;
 - (KrollContext *)context;

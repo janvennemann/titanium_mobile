@@ -70,20 +70,15 @@ void DoProxyDelegateChangedValuesWithProxy(UIView<TiProxyDelegate> *target, NSSt
         key = [NSString stringWithFormat:@"set%@%@_", [[key substringToIndex:1] uppercaseString], [key substringFromIndex:1]];
       }
       NSArray *arg = [NSArray arrayWithObjects:key, firstarg, secondarg, target, nil];
-      TiThreadPerformOnMainThread(^{
-        [proxy _dispatchWithObjectOnUIThread:arg];
-      },
-          YES);
+
+      [proxy _dispatchWithObjectOnUIThread:arg];
     }
     return;
   }
 
   sel = SetterForKrollProperty(key);
   if ([target respondsToSelector:sel]) {
-    TiThreadPerformOnMainThread(^{
-      [target performSelector:sel withObject:newValue];
-    },
-        YES);
+    [target performSelector:sel withObject:newValue];
   }
 }
 
@@ -104,10 +99,8 @@ void DoProxyDispatchToSecondaryArg(UIView<TiProxyDelegate> *target, SEL sel, NSS
       key = [NSString stringWithFormat:@"set%@%@_", [[key substringToIndex:1] uppercaseString], [key substringFromIndex:1]];
     }
     NSArray *arg = [NSArray arrayWithObjects:key, firstarg, secondarg, target, nil];
-    TiThreadPerformOnMainThread(^{
-      [proxy _dispatchWithObjectOnUIThread:arg];
-    },
-        YES);
+
+    [proxy _dispatchWithObjectOnUIThread:arg];
   }
 }
 
@@ -135,10 +128,7 @@ void DoProxyDelegateReadKeyFromProxy(UIView<TiProxyDelegate> *target, NSString *
   if (useThisThread) {
     [target performSelector:sel withObject:value];
   } else {
-    TiThreadPerformOnMainThread(^{
-      [target performSelector:sel withObject:value];
-    },
-        NO);
+    [target performSelector:sel withObject:value];
   }
 }
 
@@ -401,10 +391,7 @@ void TiClassSelectorFunction(TiBindingRunLoop runloop, void *payload)
   RELEASE_TO_NIL(baseURL);
   RELEASE_TO_NIL(krollDescription);
   if ((void *)modelDelegate != self) {
-    TiThreadPerformOnMainThread(^{
-      RELEASE_TO_NIL(modelDelegate);
-    },
-        YES);
+    RELEASE_TO_NIL(modelDelegate);
   }
   pageContext = nil;
   pageKrollObject = nil;
@@ -1144,6 +1131,7 @@ DEFINE_EXCEPTIONS
 #pragma mark Dispatching Helper
 
 //TODO: Now that we have TiThreadPerform, we should optimize this out.
+// TODO: Rename this?
 - (void)_dispatchWithObjectOnUIThread:(NSArray *)args
 {
   //NOTE: this is called by ENSURE_UI_THREAD_WITH_OBJ and will always be on UI thread when we get here

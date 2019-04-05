@@ -51,10 +51,6 @@
 {
 }
 
-- (void)gc
-{
-}
-
 - (void)booted
 {
   if (callback != nil) {

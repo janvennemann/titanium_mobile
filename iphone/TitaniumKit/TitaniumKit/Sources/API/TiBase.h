@@ -638,6 +638,20 @@ extern NSString *const kTiExceptionLocation;
  */
 void TiThreadPerformOnMainThread(void (^mainBlock)(void), BOOL waitForFinish);
 
+@class KrollContext;
+
+/**
+ * Runs a block on the thread the KrollContext was started in. This is
+ * mainly used to make sure to switch back to the JS thread from completions
+ * handlers that may run on a different thread, e.g. most UNUserNotificationCenter
+ * methods.
+ *
+ * DO NOT USE INSIDE KROLL CORE OR WHEN DEALING WITH SINGLE JSCORE OPERATONS.
+ * This proved to be error prone. Switch over to the right thread before calling
+ * back into Kroll / JSCore.
+ */
+void TiRunOnJSThread(KrollContext *ctx, void (^mainBlock)(void), BOOL waitUntilDone);
+
 #include "TiPublicAPI.h"
 
 #ifdef __cplusplus

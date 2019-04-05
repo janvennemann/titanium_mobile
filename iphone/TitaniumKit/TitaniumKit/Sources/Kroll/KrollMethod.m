@@ -38,11 +38,7 @@ JSValueRef KrollCallAsFunction(JSContextRef jsContext, JSObjectRef func, JSObjec
     NSLog(@"[DEBUG] Invoking %@ with args: %@", o, args);
 #endif
 
-    __block id result = nil;
-    TiThreadPerformOnMainThread(^{
-      result = [o call:args];
-    },
-        YES);
+    id result = [o call:args];
 #if KMETHOD_DEBUG == 1
     double elapsed = [[NSDate date] timeIntervalSinceDate:reftime];
     NSLog(@"[DEBUG] Invoked %@ with result: %@ [took: %f]", o, result, elapsed);

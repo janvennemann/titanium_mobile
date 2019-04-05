@@ -90,12 +90,9 @@ typedef NS_ENUM(NSInteger, ModuleType) {
     [(KrollBridge *)pageContext_ registerProxy:module krollObject:self];
 
     // Pre-cache a few modules we always use
-    // TODO: We actually support native apps if the "UI" namespace is wrapped out.
-    // We could move the UI-core to an own framework as well, plugging it in based
-    // on the API usage. This would be highly experimental, but a possible option
     TiModule *ui = [host moduleNamed:@"UI" context:pageContext_];
     TiModule *api = [host moduleNamed:@"API" context:pageContext_];
-    if (!TI_USE_NATIVE) {
+    if (ui != nil) {
       [self addModule:@"UI" module:ui];
     }
     [self addModule:@"API" module:api];
@@ -248,17 +245,10 @@ CFMutableSetRef krollBridgeRegistry = nil;
 
 - (void)registerForMemoryWarning
 {
-  WARN_IF_BACKGROUND_THREAD_OBJ; //NSNotificationCenter is not threadsafe!
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(didReceiveMemoryWarning:)
                                                name:UIApplicationDidReceiveMemoryWarningNotification
                                              object:nil];
-}
-
-- (void)unregisterForMemoryWarning
-{
-  WARN_IF_BACKGROUND_THREAD_OBJ; //NSNotificationCenter is not threadsafe!
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 }
 
 - (id)init
@@ -273,10 +263,8 @@ CFMutableSetRef krollBridgeRegistry = nil;
     OSSpinLockLock(&krollBridgeRegistryLock);
     CFSetAddValue(krollBridgeRegistry, self);
     OSSpinLockUnlock(&krollBridgeRegistryLock);
-    TiThreadPerformOnMainThread(^{
-      [self registerForMemoryWarning];
-    },
-        NO);
+
+    [self registerForMemoryWarning];
   }
   return self;
 }
@@ -299,7 +287,7 @@ CFMutableSetRef krollBridgeRegistry = nil;
     keepWarning = NO;
 
     for (id proxy in (NSDictionary *)registeredProxies) {
-      [proxy didReceiveMemoryWarning:notification];
+      [proxy performSelector:@selector(didReceiveMemoryWarning:) onThread:context.jsThread withObject:notification waitUntilDone:YES];
 
       OSSpinLockLock(&proxyLock);
       if (registeredProxies == NULL) {
@@ -536,7 +524,6 @@ CFMutableSetRef krollBridgeRegistry = nil;
     shutdownCondition = [condition retain];
     shutdown = YES;
     // fire a notification event to our listeners
-    WARN_IF_BACKGROUND_THREAD_OBJ; //NSNotificationCenter is not threadsafe!
     NSNotification *notification = [NSNotification notificationWithName:kTiContextShutdownNotification object:self];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
 
@@ -654,7 +641,6 @@ CFMutableSetRef krollBridgeRegistry = nil;
   if (!shutdown) {
     shutdown = YES;
     // fire a notification event to our listeners
-    WARN_IF_BACKGROUND_THREAD_OBJ; //NSNotificationCenter is not threadsafe!
     NSNotification *notification = [NSNotification notificationWithName:kTiContextShutdownNotification object:self];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
   }
@@ -670,10 +656,6 @@ CFMutableSetRef krollBridgeRegistry = nil;
 
 - (void)didStopNewContext:(KrollContext *)kroll
 {
-  TiThreadPerformOnMainThread(^{
-    [self unregisterForMemoryWarning];
-  },
-      NO);
   [self removeProxies];
   RELEASE_TO_NIL(titanium);
   RELEASE_TO_NIL(console);
@@ -709,16 +691,10 @@ CFMutableSetRef krollBridgeRegistry = nil;
     return ourKrollObject;
   }
 
-  if (![context isKJSThread]) {
-    return nil;
-  }
-
   ourKrollObject = [[KrollObject alloc] initWithTarget:proxy context:context];
-#ifdef USE_JSCORE_FRAMEWORK
   if (![proxy isKindOfClass:[TiModule class]]) {
     [ourKrollObject applyGarbageCollectionSafeguard];
   }
-#endif
 
   [self registerProxy:proxy
           krollObject:ourKrollObject];
@@ -1513,13 +1489,6 @@ CFMutableSetRef krollBridgeRegistry = nil;
   OSSpinLockUnlock(&krollBridgeRegistryLock);
 
   return result;
-}
-
-- (int)forceGarbageCollectNow;
-{
-  [context gc];
-  //Actually forcing garbage collect now will cause a deadlock.
-  return 0;
 }
 
 - (BOOL)shouldDebugContext

@@ -31,10 +31,6 @@
   id<KrollDelegate> delegate;
   BOOL stopped;
 
-  //Garbage collection variables.
-  BOOL gcrequest;
-  unsigned int loopCount;
-
   BOOL destroyed;
 #ifndef __clang_analyzer__
   BOOL suspended;
@@ -44,6 +40,7 @@
 }
 
 @property (nonatomic, readwrite, assign) id<KrollDelegate> delegate;
+@property (nonatomic, strong, readonly) NSThread *jsThread;
 
 - (void)start;
 - (void)stop;
@@ -61,8 +58,6 @@
 - (id)evalJSAndWait:(NSString *)code;
 
 - (void)enqueue:(id)obj;
-
-- (int)forceGarbageCollectNow;
 
 @end
 
