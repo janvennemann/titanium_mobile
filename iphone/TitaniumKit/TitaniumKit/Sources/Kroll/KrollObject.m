@@ -1048,43 +1048,51 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
     return;
   }
 
-  if (![thisObject isKindOfClass:[KrollObject class]]) {
-    thisObject = [(KrollBridge *)[context delegate] registerProxy:thisObject];
-  }
-
-  JSValueRef exception = NULL;
-
-  JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContext, propsObject, kTiStringPropertyKey, &exception);
-
-  jsProxyHash = JSValueToObject(jsContext, jsProxyHash, &exception);
-  if ((jsProxyHash == NULL) || (JSValueGetType(jsContext, jsProxyHash) != kJSTypeObject)) {
-    if (block != nil) {
-      block(nil);
+  __block id _thisObject = thisObject;
+  void (^mainBlock)(void) = ^{
+    if (finalized) {
+      return;
     }
-    return;
-  }
-
-  JSStringRef nameRef = JSStringCreateWithCFString((CFStringRef)key);
-  JSObjectRef jsCallback = (JSObjectRef)JSObjectGetProperty(jsContext, jsProxyHash, nameRef, NULL);
-  JSStringRelease(nameRef);
-
-  if ((jsCallback == NULL) || (JSValueGetType(jsContext, jsCallback) != kJSTypeObject)) {
-    if (block != nil) {
-      block(nil);
+    
+    if (![_thisObject isKindOfClass:[KrollObject class]]) {
+      _thisObject = [(KrollBridge *)[context delegate] registerProxy:thisObject];
     }
-    return;
-  }
-
-  JSValueRef jsEventData = ConvertIdTiValue(context, eventData);
-  JSValueRef result = JSObjectCallAsFunction(jsContext, jsCallback, [thisObject jsobject], 1, &jsEventData, &exception);
-  if (exception != NULL) {
-    id excm = [KrollObject toID:context value:exception];
-    [[TiExceptionHandler defaultExceptionHandler] reportScriptError:[TiUtils scriptErrorValue:excm]];
-  }
-
-  if (block != nil) {
-    block(TiValueToId(context, result));
+    
+    JSValueRef exception = NULL;
+    
+    JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContext, propsObject, kTiStringPropertyKey, &exception);
+    
+    jsProxyHash = JSValueToObject(jsContext, jsProxyHash, &exception);
+    if ((jsProxyHash == NULL) || (JSValueGetType(jsContext, jsProxyHash) != kJSTypeObject)) {
+      if (block != nil) {
+        block(nil);
+      }
+      return;
+    }
+    
+    JSStringRef nameRef = JSStringCreateWithCFString((CFStringRef)key);
+    JSObjectRef jsCallback = (JSObjectRef)JSObjectGetProperty(jsContext, jsProxyHash, nameRef, NULL);
+    JSStringRelease(nameRef);
+    
+    if ((jsCallback == NULL) || (JSValueGetType(jsContext, jsCallback) != kJSTypeObject)) {
+      if (block != nil) {
+        block(nil);
+      }
+      return;
+    }
+    
+    JSValueRef jsEventData = ConvertIdTiValue(context, eventData);
+    JSValueRef result = JSObjectCallAsFunction(jsContext, jsCallback, [_thisObject jsobject], 1, &jsEventData, &exception);
+    if (exception != NULL) {
+      id excm = [KrollObject toID:context value:exception];
+      [[TiExceptionHandler defaultExceptionHandler] reportScriptError:[TiUtils scriptErrorValue:excm]];
+    }
+    
+    if (block != nil) {
+      block(TiValueToId(context, result));
+    };
   };
+  TiRunOnJSThread(context, mainBlock, NO);
 }
 
 - (void)noteKrollObject:(KrollObject *)value forKey:(NSString *)key
