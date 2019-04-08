@@ -99,6 +99,9 @@ void KrollFinalizer(JSObjectRef ref)
     DeveloperLog(@"[WARN] Object %@ was not a KrollObject during finalization, was: %@", o, [o class]);
     return;
   }
+  
+  NSLog(@"KrollFinalizer <%@ (%p), jsObject:<JSObjectRef (%p)>>", ((KrollObject *)o).class, o, ref);
+  
 #if KOBJECT_MEMORY_DEBUG == 1
   NSLog(@"[KROLL DEBUG] KROLL FINALIZER: %@, retain:%d", o, [o retainCount]);
 #endif
@@ -142,6 +145,9 @@ void KrollInitializer(JSContextRef ctx, JSObjectRef object)
   if ([o isKindOfClass:[KrollContext class]]) {
     return;
   }
+  
+  NSLog(@"KrollInitializer <%@ (%p), jsObject:<JSObjectRef (%p)>>", o, o, object);
+  
 #if KOBJECT_MEMORY_DEBUG == 1
   NSLog(@"[KROLL DEBUG] KROLL RETAINER: %@ (%@), retain:%d", o, [o class], [o retainCount]);
 #endif
@@ -178,6 +184,7 @@ bool KrollHasProperty(JSContextRef jsContext, JSObjectRef object, JSStringRef pr
 
   NSString *name = (NSString *)JSStringCopyCFString(kCFAllocatorDefault, propertyName);
   [name autorelease];
+  NSLog(@"KrollHasProperty <%@ (%p), jsObject:<JSObjectRef (%p)>, name: %@>", o.class, o, object, name);
   return [o hasProperty:name];
 }
 
@@ -210,6 +217,8 @@ JSValueRef KrollGetProperty(JSContextRef jsContext, JSObjectRef object, JSString
 
     NSString *name = (NSString *)JSStringCopyCFString(kCFAllocatorDefault, prop);
     [name autorelease];
+    
+    NSLog(@"KrollGetProperty <%@ (%p), jsObject:<JSObjectRef (%p)>, name: %@>", o.class, o, object, name);
 
     id result = [o valueForKey:name];
 
