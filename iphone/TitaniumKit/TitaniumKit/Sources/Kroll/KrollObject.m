@@ -146,7 +146,7 @@ void KrollInitializer(JSContextRef ctx, JSObjectRef object)
     return;
   }
   
-  NSLog(@"KrollInitializer <%@ (%p), jsObject:<JSObjectRef (%p)>>", o, o, object);
+  NSLog(@"KrollInitializer <%@ (%p), jsObject:<JSObjectRef (%p)>>", o.class, o, object);
   
 #if KOBJECT_MEMORY_DEBUG == 1
   NSLog(@"[KROLL DEBUG] KROLL RETAINER: %@ (%@), retain:%d", o, [o class], [o retainCount]);
