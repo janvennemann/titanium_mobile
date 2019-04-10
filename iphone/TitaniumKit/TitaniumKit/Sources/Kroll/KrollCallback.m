@@ -104,9 +104,9 @@ static NSLock *callbackLock;
     return nil;
   }
 
-  if (!context.isKJSThread) {
+  if (context.jsThread == NSThread.mainThread && !context.isKJSThread) {
     __block id result = nil;
-    TiRunOnJSThread(context, ^{
+    TiThreadPerformOnMainThread(^{
       result = [self call:args thisObject:thisObject_];
     },
         YES);

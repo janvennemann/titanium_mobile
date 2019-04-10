@@ -1092,7 +1092,11 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
       block(TiValueToId(context, result));
     };
   };
-  TiRunOnJSThread(context, mainBlock, NO);
+  if (context.jsThread == NSThread.mainThread && !context.isKJSThread) {
+    TiThreadPerformOnMainThread(mainBlock, NO);
+  } else {
+    mainBlock();
+  }
 }
 
 - (void)noteKrollObject:(KrollObject *)value forKey:(NSString *)key
