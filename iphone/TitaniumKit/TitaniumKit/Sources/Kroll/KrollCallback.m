@@ -62,17 +62,8 @@ static NSLock *callbackLock;
 
   [type release];
   if ([KrollBridge krollBridgeExists:bridge]) {
-    if ([context isKJSThread]) {
-      JSValueUnprotect(jsContext, function);
-      JSValueUnprotect(jsContext, thisObj);
-    } else {
-      KrollUnprotectOperation *delayedUnprotect = [[KrollUnprotectOperation alloc]
-          initWithContext:jsContext
-             withJsobject:function
-              andJsobject:thisObj];
-      [context enqueue:delayedUnprotect];
-      [delayedUnprotect release];
-    }
+    JSValueUnprotect(jsContext, function);
+    JSValueUnprotect(jsContext, thisObj);
   }
   function = NULL;
   thisObj = NULL;

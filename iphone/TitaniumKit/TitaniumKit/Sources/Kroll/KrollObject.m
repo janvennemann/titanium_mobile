@@ -426,10 +426,6 @@ bool KrollHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValueRef poss
     if ([(KrollBridge *)[context_ delegate] usesProxy:target_] && [self isMemberOfClass:[KrollObject class]]) {
       DeveloperLog(@"[WARN] Bridge %@ already has target %@!", [context_ delegate], target_);
     }
-
-    if (![context_ isKJSThread]) {
-      DeveloperLog(@"[WARN] %@->%@ is being made in a thread not owned by %@.", self, target_, context_);
-    }
 #endif
     target = [target_ retain];
     context = context_; // don't retain

@@ -40,10 +40,6 @@
     return;
   }
 
-  if (![[bridge krollContext] isKJSThread]) {
-    DeveloperLog(@"[WARN] KrollWrapper trying to protect in the wrong thread.%@", CODELOCATION);
-    return;
-  }
   protecting = YES;
   JSValueProtect([[bridge krollContext] context], jsobject);
 }
@@ -54,10 +50,6 @@
     return;
   }
 
-  if (![[bridge krollContext] isKJSThread]) {
-    DeveloperLog(@"[WARN] KrollWrapper trying to unprotect in the wrong thread.%@", CODELOCATION);
-    return;
-  }
   protecting = NO;
   JSValueUnprotect([[bridge krollContext] context], jsobject);
 }

@@ -195,10 +195,6 @@ JSValueRef TiBindingTiValueFromProxy(JSContextRef jsContext, TiProxy *obj)
   KrollBridge *ourBridge = (KrollBridge *)[context delegate];
   if (ourBridge != nil) {
     if (![ourBridge usesProxy:obj]) {
-      if (![context isKJSThread]) {
-        DebugLog(@"[WARN] Creating %@ in a different context than the calling function.", obj);
-        ourBridge = [KrollBridge krollBridgeForThreadName:[[NSThread currentThread] name]];
-      }
       return [[ourBridge registerProxy:obj] jsobject];
     }
     KrollObject *objKrollObject = [ourBridge krollObjectForProxy:obj];
