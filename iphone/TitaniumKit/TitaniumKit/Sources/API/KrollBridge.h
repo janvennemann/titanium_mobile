@@ -64,5 +64,6 @@ extern NSString *TitaniumModuleRequireFormat;
 
 - (void)enqueueEvent:(NSString *)type forProxy:(TiProxy *)proxy withObject:(id)obj;
 - (void)registerProxy:(id)proxy krollObject:(KrollObject *)ourKrollObject;
+- (int)forceGarbageCollectNow;
 
 @end

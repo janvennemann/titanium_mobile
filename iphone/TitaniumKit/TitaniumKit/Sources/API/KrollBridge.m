@@ -1477,6 +1477,12 @@ CFMutableSetRef krollBridgeRegistry = nil;
   return result;
 }
 
+- (int)forceGarbageCollectNow;
+{
+  // TODO: cleanup old GC methods
+  return 0;
+}
+
 - (BOOL)shouldDebugContext
 {
   return [[self host] debugMode];

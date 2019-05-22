@@ -775,6 +775,13 @@ static JSValueRef StringFormatDecimalCallback(JSContextRef jsContext, JSObjectRe
   JSStringRelease(invokerFnName);
 }
 
+- (int)forceGarbageCollectNow
+{
+  JSGarbageCollect(context);
+  
+  return 0;
+}
+
 - (void)main
 {
   pthread_mutex_lock(&KrollEntryLock);
