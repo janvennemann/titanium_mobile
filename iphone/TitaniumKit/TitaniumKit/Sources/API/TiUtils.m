@@ -1492,7 +1492,7 @@ If the new path starts with / and the base url is app://..., we have to massage 
   if ([url isFileURL] || app) {
     BOOL leadingSlashRemoved = NO;
     NSString *urlstring = [[url standardizedURL] path];
-    NSString *resourceurl = [[NSBundle mainBundle] resourcePath];
+    NSString *resourceurl = TiHost.resourcePath;
     NSRange range = [urlstring rangeOfString:resourceurl];
     NSString *appurlstr = urlstring;
     if (range.location != NSNotFound) {
