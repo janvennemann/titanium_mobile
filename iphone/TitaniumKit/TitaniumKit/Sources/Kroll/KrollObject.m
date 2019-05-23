@@ -1,6 +1,6 @@
 /**
  * Appcelerator Titanium Mobile
- * Copyright (c) 2009-2018 by Appcelerator, Inc. All Rights Reserved.
+ * Copyright (c) 2009-Present by Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
@@ -148,9 +148,6 @@ void KrollInitializer(JSContextRef ctx, JSObjectRef object)
 
   if ([o isKindOfClass:[KrollObject class]]) {
     [o retain];
-    JSObjectRef propsObject = JSObjectMake(ctx, NULL, NULL);
-    JSObjectSetProperty(ctx, object, kTiStringTiPropertyKey, propsObject, kJSPropertyAttributeDontEnum, NULL);
-    [o setPropsObject:propsObject];
   } else {
     DeveloperLog(@"[DEBUG] Initializer for %@", [o class]);
   }
@@ -231,9 +228,15 @@ JSValueRef KrollGetProperty(JSContextRef jsContext, JSObjectRef object, JSString
       }
     }
 
+    // TODO USe a marking protocol to skip when
+    if ([result conformsToProtocol:@protocol(JSExport)]) {
+      JSContext *objcContext = [JSContext contextWithJSGlobalContextRef:[[o context] context]];
+      return [[JSValue valueWithObject:result inContext:objcContext] JSValueRef];
+    }
+
     JSValueRef jsResult = ConvertIdTiValue([o context], result);
     if (([result isKindOfClass:[KrollObject class]] && ![result isKindOfClass:[KrollCallback class]] && [[result target] isKindOfClass:[TiProxy class]])
-        || ([result isKindOfClass:[TiProxy class]])) {
+        || [result isKindOfClass:[TiProxy class]]) {
       [o noteObject:(JSObjectRef)jsResult forTiString:prop context:jsContext];
     } else {
       [o forgetObjectForTiString:prop context:jsContext];
@@ -293,18 +296,6 @@ bool KrollSetProperty(JSContextRef jsContext, JSObjectRef object, JSStringRef pr
   return false;
 }
 
-// forward declare these
-
-//@interface TitaniumObject : NSObject
-//@end
-
-@interface TitaniumObject (Private)
-- (NSDictionary *)modules;
-@end
-
-//@interface TiProxy : NSObject
-//@end
-
 //
 // handle property names which makes the object iterable
 //
@@ -319,13 +310,7 @@ void KrollPropertyNames(JSContextRef ctx, JSObjectRef object, JSPropertyNameAccu
   if (o) {
     id target = [o target];
 
-    if ([o isKindOfClass:[TitaniumObject class]]) {
-      for (NSString *key in [[(TitaniumObject *)o modules] allKeys]) {
-        JSStringRef value = JSStringCreateWithUTF8CString([key UTF8String]);
-        JSPropertyNameAccumulatorAddName(propertyNames, value);
-        JSStringRelease(value);
-      }
-    } else if ([target isKindOfClass:[TiProxy class]]) {
+    if ([target isKindOfClass:[TiProxy class]]) {
       for (NSString *key in [target allKeys]) {
         JSStringRef value = JSStringCreateWithUTF8CString([key UTF8String]);
         JSPropertyNameAccumulatorAddName(propertyNames, value);
@@ -378,8 +363,7 @@ bool KrollHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValueRef poss
 @interface KrollObject ()
 
 /**
- Boolean flag indicating whether the underlying JSObjectRef was safeguarded against
- being GC'ed during the proxy creation flow.
+ Boolean flag indicating whether the underlying JSObjectRef was protected from JSC GC.
  */
 @property (nonatomic, assign, getter=isGcSafeguarded) BOOL gcSafeguarded;
 
@@ -387,7 +371,7 @@ bool KrollHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValueRef poss
 
 @implementation KrollObject
 
-@synthesize propsObject, finalized, bridge;
+@synthesize finalized, bridge;
 
 + (void)initialize
 {
@@ -431,7 +415,6 @@ bool KrollHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValueRef poss
     context = context_; // don't retain
     jsContext = [context context];
     bridge = (KrollBridge *)[context_ delegate];
-    jsobject = JSObjectMake(jsContext, [[self class] jsClassRef], self);
     targetable = [target conformsToProtocol:@protocol(KrollTargetable)];
 
     self.gcSafeguarded = NO;
@@ -441,21 +424,26 @@ bool KrollHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValueRef poss
 
 - (JSObjectRef)jsobject
 {
-  return jsobject;
+  if (_jsobject == NULL && !finalized) {
+    _jsobject = JSObjectMake(jsContext, [[self class] jsClassRef], self);
+  }
+  return _jsobject;
 }
 
-- (void)invalidateJsobject;
+- (JSObjectRef)propsObject
 {
-  propsObject = NULL;
-  jsobject = NULL;
-  context = nil;
-  jsContext = NULL;
+  if (_propsObject == NULL && !finalized) {
+    JSObjectRef propsObject = JSObjectMake(jsContext, NULL, NULL);
+    JSObjectSetProperty(jsContext, self.jsobject, kTiStringTiPropertyKey, propsObject, kJSPropertyAttributeDontEnum, NULL);
+    _propsObject = propsObject;
+  }
+  return _propsObject;
 }
 
 - (BOOL)isEqual:(id)anObject
 {
   if ([anObject isKindOfClass:[KrollObject class]]) {
-    JSObjectRef ref1 = jsobject;
+    JSObjectRef ref1 = self.jsobject;
     JSObjectRef ref2 = [(KrollObject *)anObject jsobject];
     return JSValueIsStrictEqual(jsContext, ref1, ref2);
   }
@@ -948,12 +936,12 @@ bool KrollHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValueRef poss
   }
 
   JSContextRef jscontext = [context context];
-  if (finalized || (jscontext == NULL) || (jsobject == NULL)) {
+  if (finalized || (jscontext == NULL) || (self.jsobject == NULL)) {
     return;
   }
 
   protecting = YES;
-  JSValueProtect(jscontext, jsobject);
+  JSValueProtect(jscontext, self.jsobject);
 }
 
 - (void)unprotectJsobject
@@ -962,12 +950,12 @@ bool KrollHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValueRef poss
     return;
   }
   JSContextRef jscontext = [context context];
-  if (finalized || (jscontext == NULL) || (jsobject == NULL)) {
+  if (finalized || (jscontext == NULL) || (self.jsobject == NULL)) {
     return;
   }
 
   protecting = NO;
-  JSValueUnprotect(jscontext, jsobject);
+  JSValueUnprotect(jscontext, self.jsobject);
 }
 
 TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
@@ -1039,7 +1027,6 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 
 - (void)invokeCallbackForKey:(NSString *)key withObject:(NSDictionary *)eventData thisObject:(KrollObject *)thisObject onDone:(void (^)(id result))block
 {
-
   if (finalized) {
     return;
   }
@@ -1049,15 +1036,15 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
     if (finalized) {
       return;
     }
-    
+
     if (![_thisObject isKindOfClass:[KrollObject class]]) {
       _thisObject = [(KrollBridge *)[context delegate] registerProxy:thisObject];
     }
     
     JSValueRef exception = NULL;
-    
-    JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContext, propsObject, kTiStringPropertyKey, &exception);
-    
+
+    JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContext, self.propsObject, kTiStringPropertyKey, &exception);
+
     jsProxyHash = JSValueToObject(jsContext, jsProxyHash, &exception);
     if ((jsProxyHash == NULL) || (JSValueGetType(jsContext, jsProxyHash) != kJSTypeObject)) {
       if (block != nil) {
@@ -1116,16 +1103,16 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 
 - (void)noteObject:(JSObjectRef)storedJSObject forTiString:(JSStringRef)keyString context:(JSContextRef)jsContextRef
 {
-  if ((propsObject == NULL) || (storedJSObject == NULL) || finalized) {
+  if ((self.propsObject == NULL) || (storedJSObject == NULL) || finalized) {
     return;
   }
   JSValueRef exception = NULL;
 
-  JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContextRef, propsObject, kTiStringPropertyKey, &exception);
+  JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContextRef, self.propsObject, kTiStringPropertyKey, &exception);
 
   if ((jsProxyHash == NULL) || (JSValueGetType(jsContextRef, jsProxyHash) != kJSTypeObject)) {
     jsProxyHash = JSObjectMake(jsContextRef, NULL, &exception);
-    JSObjectSetProperty(jsContextRef, propsObject, kTiStringPropertyKey, jsProxyHash,
+    JSObjectSetProperty(jsContextRef, self.propsObject, kTiStringPropertyKey, jsProxyHash,
         kJSPropertyAttributeDontEnum, &exception);
   }
 
@@ -1135,12 +1122,12 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 
 - (void)forgetObjectForTiString:(JSStringRef)keyString context:(JSContextRef)jsContextRef
 {
-  if ((propsObject == NULL) || finalized) {
+  if ((self.propsObject == NULL) || finalized) {
     return;
   }
   JSValueRef exception = NULL;
 
-  JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContextRef, propsObject, kTiStringPropertyKey, &exception);
+  JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContextRef, self.propsObject, kTiStringPropertyKey, &exception);
 
   if ((jsProxyHash == NULL) || (JSValueGetType(jsContextRef, jsProxyHash) != kJSTypeObject)) {
     return;
@@ -1157,7 +1144,7 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 
   JSValueRef exception = NULL;
 
-  JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContextRef, propsObject, kTiStringPropertyKey, &exception);
+  JSObjectRef jsProxyHash = (JSObjectRef)JSObjectGetProperty(jsContextRef, self.propsObject, kTiStringPropertyKey, &exception);
 
   if ((jsProxyHash == NULL) || (JSValueGetType(jsContextRef, jsProxyHash) != kJSTypeObject)) {
     return NULL;
@@ -1173,13 +1160,13 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 
 - (void)storeListener:(id)eventCallbackOrWrapper forEvent:(NSString *)eventName
 {
-  if ((propsObject == NULL) || finalized) {
+  if ((self.propsObject == NULL) || finalized) {
     return;
   }
 
   JSValueRef exception = NULL;
 
-  JSValueRef jsEventValue = JSObjectGetProperty(jsContext, propsObject, kTiStringEventKey, &exception);
+  JSValueRef jsEventValue = JSObjectGetProperty(jsContext, self.propsObject, kTiStringEventKey, &exception);
 
   // Grab event JSObject. Default to NULL if it isn't an object
   JSObjectRef jsEventHash = NULL;
@@ -1190,7 +1177,7 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
   // Value wasn't an object (undefined, likely) - or conversion to JSObjectRef failed
   if (jsEventHash == NULL) {
     jsEventHash = JSObjectMake(jsContext, NULL, &exception);
-    JSObjectSetProperty(jsContext, propsObject, kTiStringEventKey, jsEventHash,
+    JSObjectSetProperty(jsContext, self.propsObject, kTiStringEventKey, jsEventHash,
         kJSPropertyAttributeDontEnum, &exception);
   }
 
@@ -1242,11 +1229,11 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 
 - (JSObjectRef)callbacksForEvent:(JSStringRef)jsEventTypeString
 {
-  if (finalized || (propsObject == NULL)) {
+  if (finalized || (self.propsObject == NULL)) {
     return NULL;
   }
 
-  JSObjectRef jsEventHash = (JSObjectRef)JSObjectGetProperty(jsContext, propsObject, kTiStringEventKey, NULL);
+  JSObjectRef jsEventHash = (JSObjectRef)JSObjectGetProperty(jsContext, self.propsObject, kTiStringEventKey, NULL);
   if ((jsEventHash == NULL) || (JSValueGetType(jsContext, jsEventHash) != kJSTypeObject)) { //We did not have any event listeners on this proxy. Perfectly normal.
     return NULL;
   }
@@ -1290,7 +1277,7 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 
 - (void)triggerEvent:(NSString *)eventName withObject:(NSDictionary *)eventData thisObject:(KrollObject *)thisObject
 {
-  if (propsObject == NULL) {
+  if (self.propsObject == NULL) {
     return;
   }
 
@@ -1328,11 +1315,13 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
 
 /**
  Protects the underlying JSObjectRef from being accidentally GC'ed.
-
- Upon proxy creation there is a small timeframe between creating the KrollObject
- with its JSObject and the JSObject actually getting referenced in the JS object graph.
- If JSC's garbage collection happens during this time the JSObject is lost and eventually
- leads to a crash inside the JSC runtime.
+ 
+ The KrollObject's JSObjectRef is stored on the heap and therefore not automatically
+ protected against GC unless it is referenced via a variable on the stack or inside
+ the JS object graph!
+ 
+ If JSC's garbage collection runs while the JSObjectRef is not protected it is lost and
+ eventually leads to crashes inside the JSC runtime.
  */
 - (void)applyGarbageCollectionSafeguard
 {
@@ -1340,20 +1329,19 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
     return;
   }
 
-  if (finalized == YES || jsContext == NULL || jsobject == NULL) {
+  if (finalized == YES || jsContext == NULL || self.jsobject == NULL) {
     return;
   }
 
-  JSValueProtect(jsContext, jsobject);
+  JSValueProtect(jsContext, self.jsobject);
   self.gcSafeguarded = YES;
 }
 
 /**
  Removes the garbage collection safeguard by unprotecting the JSObjectRef again.
-
- This must only be called immediately before the JSObjectRef gets inserted into the JS object
- graph. Even better would be after the insertion but there is currently no viable place to do
- that in our proxy creation flow.
+ 
+ This may only be called when the JSObjectRef is referenced on the stack or in the
+ JS object graph.
  */
 - (void)removeGarbageCollectionSafeguard
 {
@@ -1361,11 +1349,11 @@ TI_INLINE JSStringRef TiStringCreateWithPointerValue(int value)
     return;
   }
 
-  if (finalized == YES || jsContext == NULL || jsobject == NULL) {
+  if (finalized == YES || jsContext == NULL || self.jsobject == NULL) {
     return;
   }
 
-  JSValueUnprotect(jsContext, jsobject);
+  JSValueUnprotect(jsContext, self.jsobject);
   self.gcSafeguarded = NO;
 }
 

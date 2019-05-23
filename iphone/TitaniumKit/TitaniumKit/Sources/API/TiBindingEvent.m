@@ -266,6 +266,7 @@ void TiBindingEventProcess(TiBindingRunLoop runloop, void *payload)
         id excm = TiBindingTiValueToNSObject(context, exception);
         [[TiExceptionHandler defaultExceptionHandler] reportScriptError:[TiUtils scriptErrorValue:excm]];
       }
+
       // Note cancel bubble
       cancelBubbleValue = JSObjectGetProperty(context, eventObjectRef, jsEventCancelBubbleStringRef, NULL);
       if (JSValueToBoolean(context, cancelBubbleValue)) {

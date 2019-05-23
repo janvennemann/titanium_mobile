@@ -7,10 +7,7 @@
 
 #import "TiBase.h"
 #import "TiApp.h"
-#ifndef DISABLE_TI_LOG_SERVER
 #import "TiLogServer.h"
-#endif
-#import "KrollContext.h"
 
 #include <pthread.h>
 #include <stdarg.h>
@@ -66,10 +63,10 @@ void TiLogMessage(NSString *str, ...)
   NSLog(@"%@", message);
 #pragma pop
 
-#ifndef DISABLE_TI_LOG_SERVER
-  // next we send the message to the log server to be sent or queued up
-  [[TiLogServer defaultLogServer] log:message];
-#endif
+  if ([[TiSharedConfig defaultConfig] logServerEnabled]) { // FIXME: cache the value, since it only changes once?
+    // next we send the message to the log server to be sent or queued up
+    [[TiLogServer defaultLogServer] log:message];
+  }
 }
 
 NSString *const kTiASCIIEncoding = @"ascii";

@@ -16,6 +16,9 @@
 
 - (void)dealloc
 {
+  // Allow JavascriptCore to release module proxy.
+  [self forgetSelf];
+
   RELEASE_TO_NIL(host);
   if (classNameLookup != NULL) {
     CFRelease(classNameLookup);
@@ -97,6 +100,9 @@
   }
 
   [self registerForNotifications];
+
+  // Prevent JavascriptCore from releasing module proxy.
+  [self rememberSelf];
 }
 
 - (void)_configure
