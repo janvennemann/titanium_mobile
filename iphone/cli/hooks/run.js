@@ -110,7 +110,7 @@ exports.init = function (logger, config, cli) {
 						builder.simHandle.udid,
 						'log', 'stream',
 						'--style', 'syslog',
-						'--predicate', `process == "${appName}"`
+						'--predicate', `process contains "${appName}"`
 					]);
 					child.stdout.on('data', data => {
 						data = data.toString();
