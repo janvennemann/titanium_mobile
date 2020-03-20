@@ -269,6 +269,7 @@ TI_INLINE void waitForMemoryPanicCleared(void); //WARNING: This must never be ru
   if ([[TiSharedConfig defaultConfig] logServerEnabled]) {
     [[TiLogServer defaultLogServer] start];
   }
+  
   [self initController];
   [self launchToUrl];
   [self boot];
@@ -347,6 +348,9 @@ TI_INLINE void waitForMemoryPanicCleared(void); //WARNING: This must never be ru
 
   // Initialize the root-controller
   [self initController];
+  
+  // Initilaize layout factories
+  [self registerLayoutFactories];
 
   // If we have a APNS-UUID, assign it
   NSString *apnsUUID = [[NSUserDefaults standardUserDefaults] stringForKey:@"APNSRemoteDeviceUUID"];

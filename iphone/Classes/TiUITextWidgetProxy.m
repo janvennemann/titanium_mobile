@@ -122,7 +122,7 @@ DEFINE_DEF_BOOL_PROP(suppressReturn, YES);
 - (CGFloat)keyboardAccessoryHeight
 {
   CGFloat result = MAX(keyboardAccessoryHeight, 40);
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if ([[keyboardTiView proxy] respondsToSelector:@selector(verifyHeight:)]) {
     result = [(TiViewProxy<LayoutAutosizing> *)[keyboardTiView proxy] verifyHeight:result];
   }
@@ -263,7 +263,7 @@ DEFINE_DEF_BOOL_PROP(suppressReturn, YES);
   return nil;
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (TiDimension)defaultAutoWidthBehavior:(id)unused
 {
   return TiDimensionAutoSize;
@@ -302,7 +302,7 @@ DEFINE_DEF_BOOL_PROP(suppressReturn, YES);
   },
       NO);
 }
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 USE_VIEW_FOR_CONTENT_HEIGHT
 USE_VIEW_FOR_CONTENT_WIDTH
 #endif

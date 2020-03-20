@@ -46,7 +46,7 @@
 - (id)init
 {
   if (self = [super init]) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     cacheSize = 3;
 #endif
     pagingControlHeight = 20;
@@ -421,7 +421,7 @@
 
 - (void)refreshScrollView:(CGRect)visibleBounds readd:(BOOL)readd
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   CGRect viewBounds;
   viewBounds.size.width = visibleBounds.size.width;
   viewBounds.size.height = visibleBounds.size.height - (showPageControl ? pagingControlHeight : 0);
@@ -479,7 +479,7 @@
   [sv setFrame:CGRectMake(0, 0, visibleBounds.size.width, visibleBounds.size.height)];
 #endif
 }
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 // We have to cache the current page because we need to scroll to the new (logical) position of the view
 // within the scrollable view.  Doing so, if we're resizing to a SMALLER frame, causes a content offset
 // reset internally, which screws with the currentPage number (since -[self scrollViewDidScroll:] is called).
@@ -520,7 +520,7 @@
 
 - (void)setCacheSize_:(id)args
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   ENSURE_SINGLE_ARG(args, NSNumber);
   int newCacheSize = [args intValue];
   if (newCacheSize < 3) {
@@ -536,7 +536,7 @@
 #endif
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)setViews_:(id)args
 {
   if ((scrollview != nil) && ([scrollview subviews] > 0)) {
@@ -676,7 +676,7 @@
 
 - (void)addView:(id)viewproxy
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   [self refreshScrollView:[self bounds]
                     readd:YES];
 #else
@@ -699,7 +699,7 @@
     [pageControl setCurrentPage:currentPage];
     [self.proxy replaceValue:NUMINTEGER(currentPage) forKey:@"currentPage" notification:NO];
   }
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   [self refreshScrollView:[self bounds]
                     readd:YES];
 #else
@@ -723,7 +723,7 @@
     [scrollview setContentOffset:CGPointMake([self bounds].size.width * newPage, 0) animated:[animate boolValue]];
     currentPage = newPage;
     pageControl.currentPage = newPage;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     [self manageCache:newPage];
 #endif
     [self.proxy replaceValue:NUMINT(newPage)
@@ -772,7 +772,7 @@
   [scrollview setContentOffset:CGPointMake([self bounds].size.width * pageNum, 0) animated:YES];
   handlingPageControlEvent = YES;
   currentPage = pageNum;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   [self manageCache:currentPage];
 #endif
   [self.proxy replaceValue:NUMINTEGER(pageNum)
@@ -807,7 +807,7 @@
                                         [[self proxy] viewAtIndex:nextPage], @"view", nil]];
   }
   if (page != nextPage) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     NSInteger curCacheSize = cacheSize;
     NSInteger minCacheSize = cacheSize;
     if (enforceCacheRecalculation) {
@@ -822,7 +822,7 @@
     [pageControl setCurrentPage:nextPage];
     currentPage = nextPage;
     [self.proxy replaceValue:NUMINTEGER(currentPage) forKey:@"currentPage" notification:NO];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     cacheSize = curCacheSize;
 #endif
   }

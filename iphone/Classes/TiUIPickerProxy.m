@@ -329,7 +329,7 @@ USE_VIEW_FOR_VERIFY_WIDTH
   [self makeViewPerformSelector:@selector(reloadColumn:) withObject:NUMUINTEGER(columnIndex) createIfNeeded:YES waitUntilDone:NO];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (TiDimension)defaultAutoWidthBehavior:(id)unused
 {
   return TiDimensionAutoSize;

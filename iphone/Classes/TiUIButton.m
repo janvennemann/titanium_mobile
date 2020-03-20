@@ -35,7 +35,7 @@
 {
   [button removeTarget:self action:NULL forControlEvents:UIControlEventAllTouchEvents];
   RELEASE_TO_NIL(button);
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   RELEASE_TO_NIL(viewGroupWrapper);
 #endif
   RELEASE_TO_NIL(backgroundImageCache)
@@ -51,7 +51,7 @@
     return nil;
   }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if ((viewGroupWrapper == superResult) || ([superResult isKindOfClass:[TiUIView class]] && ![(TiUIView *)superResult touchEnabled])) {
     return [self button];
   }
@@ -72,7 +72,7 @@
 
 - (void)setHighlighting:(BOOL)isHiglighted
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   for (TiUIView *thisView in [viewGroupWrapper subviews])
 #else
   for (TiUIView *thisView in [self subviews])
@@ -87,7 +87,7 @@
 - (void)updateBackgroundImage
 {
   CGRect bounds = [self bounds];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   [button setFrame:bounds];
 #endif
   if ((backgroundImageCache == nil) || (bounds.size.width == 0) || (bounds.size.height == 0)) {
@@ -180,7 +180,7 @@
     [button addTarget:self action:@selector(controlAction:forEvent:) forControlEvents:UIControlEventAllTouchEvents];
     button.exclusiveTouch = YES;
   }
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if ((viewGroupWrapper != nil) && ([viewGroupWrapper superview] != button)) {
     [viewGroupWrapper setFrame:[button bounds]];
     [button addSubview:viewGroupWrapper];
@@ -199,7 +199,7 @@
   return [self button];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (UIView *)viewGroupWrapper
 {
   if (viewGroupWrapper == nil) {

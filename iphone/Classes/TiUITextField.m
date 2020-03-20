@@ -236,7 +236,7 @@
 
 #pragma mark Internal
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
   [TiUtils setView:textWidgetView positionRect:bounds];

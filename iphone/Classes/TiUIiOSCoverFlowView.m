@@ -10,6 +10,7 @@
 #import "AFOpenFlow/UIImageExtras.h"
 #import <TitaniumKit/ImageLoader.h>
 #import <TitaniumKit/TiBlob.h>
+#import <TitaniumKit/TiViewProxy.h>
 
 @implementation TiUIiOSCoverFlowView
 

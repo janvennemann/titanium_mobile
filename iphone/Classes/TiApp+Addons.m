@@ -10,6 +10,8 @@
 #import <CoreSpotlight/CoreSpotlight.h>
 #endif
 
+#import "Titanium-Swift.h"
+
 @implementation TiApp (Addons)
 
 #pragma mark Background Fetch API's
@@ -181,5 +183,10 @@
 }
 
 #endif
+
+- (void)registerLayoutFactories
+{
+  [LayoutNodeRegistry.defaultRegistry registerDefaultFactories];
+}
 
 @end

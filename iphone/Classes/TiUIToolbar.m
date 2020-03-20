@@ -53,7 +53,7 @@
 - (NSInteger)positionForBar:(id)bar
 {
   if (extendsBackground) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 #if defined(DEBUG) || defined(DEVELOPER)
     TiDimension myTop = ((TiViewProxy *)[self proxy]).layoutProperties->top;
     if (!TiDimensionEqual(myTop, TiDimensionMake(TiDimensionTypeDip, 20))) {
@@ -71,7 +71,7 @@
   return [self toolBar];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)layoutSubviews
 {
   CGRect ourBounds = [self bounds];
@@ -153,7 +153,7 @@
   [toolBar setTranslucent:[TiUtils boolValue:value]];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
   [super frameSizeChanged:frame bounds:bounds];

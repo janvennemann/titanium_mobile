@@ -57,7 +57,7 @@
       UIView *myview = [self barButtonViewForSize:theFrame.size];
       CGSize size = myview.bounds.size;
       if (CGSizeEqualToSize(size, CGSizeZero) || size.width == 0 || size.height == 0) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
         CGFloat width = [self autoWidthForSize:CGSizeMake(1000, 1000)];
         CGFloat height = [self autoHeightForSize:CGSizeMake(width, 0)];
 #else

@@ -697,6 +697,8 @@ CFMutableSetRef krollBridgeRegistry = nil;
 
   if (exception != NULL) {
     id excm = [KrollObject toID:context value:exception];
+    JSValue *e = [JSValue valueWithJSValueRef:exception inContext:[JSContext contextWithJSGlobalContextRef:self.krollContext.context]];
+    NSLog(@"%@", [e[@"message"] toString]);
     [[TiExceptionHandler defaultExceptionHandler] reportScriptError:[TiUtils scriptErrorValue:excm]];
     return nil;
   }

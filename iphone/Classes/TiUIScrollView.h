@@ -50,7 +50,7 @@
 - (void)handleContentSize;
 - (void)setContentOffset_:(id)value withObject:(id)property;
 - (void)setZoomScale_:(id)value withObject:(id)property;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (UIView *)wrapperView;
 #endif
 - (void)scrollToBottom;

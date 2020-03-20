@@ -2629,7 +2629,7 @@
   TiViewProxy *viewProxy = (TiViewProxy *)[view proxy];
   CGFloat size = 0.0;
   if (viewProxy != nil) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     LayoutConstraint *viewLayout = [viewProxy layoutProperties];
     switch (viewLayout->height.type) {
     case TiDimensionTypeDip:
@@ -2677,7 +2677,7 @@
   CGFloat size = 0;
   BOOL hasTitle = NO;
   if (viewProxy != nil) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     LayoutConstraint *viewLayout = [viewProxy layoutProperties];
     switch (viewLayout->height.type) {
     case TiDimensionTypeDip:

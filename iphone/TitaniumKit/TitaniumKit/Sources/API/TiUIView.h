@@ -8,9 +8,11 @@
 #import "TiAnimation.h"
 #import "TiGradient.h"
 #import "TiProxy.h"
-#ifdef TI_USE_AUTOLAYOUT
-#import "TiLayoutView.h"
-#endif
+
+#define TI_UI_FLEXLAYOUT
+
+#import <TitaniumKit/FlexLayoutView.h>
+
 //By declaring a scrollView protocol, TiUITextWidget can access
 @class TiUIView;
 
@@ -45,17 +47,19 @@ void ModifyScrollViewForKeyboardHeightAndContentHeightWithResponderRect(UIScroll
  Base class for all Titanium views.
  @see TiViewProxy
  */
-#ifdef TI_USE_AUTOLAYOUT
-@interface TiUIView : TiLayoutView <TiProxyDelegate>
-#else
-@interface TiUIView : UIView <TiProxyDelegate, LayoutAutosizing, UIGestureRecognizerDelegate>
-#endif
+// #ifdef TI_USE_FLEXLAYOUT
+@interface TiUIView : FlexLayoutView
+// #else
+// @interface TiUIView : UIView <TiProxyDelegate, LayoutAutosizing, UIGestureRecognizerDelegate>
+// #endif
 {
   @protected
   BOOL configurationSet;
 
   @private
-  TiProxy *proxy;
+  //#ifndef TI_USE_FLEXLAYOUT
+  //  TiProxy *proxy;
+  //#endif
   TiAnimation *animation;
 
   CALayer *gradientLayer;
@@ -105,7 +109,7 @@ void ModifyScrollViewForKeyboardHeightAndContentHeightWithResponderRect(UIScroll
 /**
  Provides access to a proxy object of the view. 
  */
-@property (nonatomic, readwrite, assign) TiProxy *proxy;
+// @property (nonatomic, readwrite, assign) TiViewProxy *proxy;
 
 /**
  Provides access to touch delegate of the view.

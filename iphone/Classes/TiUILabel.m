@@ -15,6 +15,9 @@
 #ifdef USE_TI_UIATTRIBUTEDSTRING
 #import "TiUIAttributedStringProxy.h"
 #endif
+
+#import <TitaniumKit/TitaniumKit-Swift.h>
+
 @implementation TiUILabel
 
 #pragma mark Internal
@@ -93,7 +96,7 @@
 
 - (void)padLabel
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   CGSize actualLabelSize = [[self label] sizeThatFits:CGSizeMake(initialLabelFrame.size.width, 0)];
   UIControlContentVerticalAlignment alignment = verticalAlign;
   if (alignment == UIControlContentVerticalAlignmentFill) {
@@ -150,7 +153,7 @@
 #endif
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 // FIXME: This isn't quite true.  But the brilliant soluton wasn't so brilliant, because it screwed with layout in unpredictable ways.
 //	Sadly, there was a brilliant solution for fixing the blurring here, but it turns out there's a
 //	quicker fix: Make sure the label itself has an even height and width. Everything else is irrelevant.
@@ -162,7 +165,7 @@
 
 - (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   initialLabelFrame = bounds;
   [wrapperView setFrame:initialLabelFrame];
 #endif
@@ -176,7 +179,7 @@
     label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];
     label.numberOfLines = 0;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     wrapperView = [[UIView alloc] initWithFrame:[self bounds]];
     [wrapperView addSubview:label];
     wrapperView.clipsToBounds = YES;
@@ -533,6 +536,12 @@
   CGPoint p = [TiUtils pointValue:value];
   CGSize size = { p.x, p.y };
   [[self label] setShadowOffset:size];
+}
+
+- (void)layoutSubviews
+{
+  CGSize size = [self.proxy.layoutService rectFromLayoutForView:self].size;
+  self.label.frame = CGRectMake(0, 0, size.width, size.height);
 }
 
 @end

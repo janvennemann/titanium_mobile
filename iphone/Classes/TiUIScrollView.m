@@ -83,7 +83,7 @@
 
 - (void)dealloc
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   RELEASE_TO_NIL(wrapperView);
 #endif
 #ifdef USE_TI_UIREFRESHCONTROL
@@ -93,7 +93,7 @@
   [super dealloc];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (UIView *)wrapperView
 {
   if (wrapperView == nil) {
@@ -217,7 +217,7 @@
 
 - (void)setNeedsHandleContentSizeIfAutosizing
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (TiDimensionIsAuto(contentWidth) || TiDimensionIsAuto(contentHeight) || TiDimensionIsAutoSize(contentWidth) || TiDimensionIsAutoSize(contentHeight) || TiDimensionIsUndefined(contentWidth) || TiDimensionIsUndefined(contentHeight)) {
     [self setNeedsHandleContentSize];
   }
@@ -226,7 +226,7 @@
 
 - (void)setNeedsHandleContentSize
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (!needsHandleContentSize) {
     needsHandleContentSize = YES;
     TiThreadPerformOnMainThread(^{
@@ -239,7 +239,7 @@
 
 - (BOOL)handleContentSizeIfNeeded
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (needsHandleContentSize) {
     [self handleContentSize];
     return YES;
@@ -250,7 +250,7 @@
 
 - (void)handleContentSize
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (!needsHandleContentSize) {
     return;
   }
@@ -344,7 +344,7 @@
   [[self scrollView] setDecelerationRate:[TiUtils floatValue:value def:UIScrollViewDecelerationRateNormal]];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)setContentWidth_:(id)value
 {
   contentWidth = [TiUtils dimensionValue:value];
@@ -486,7 +486,7 @@
   [(id<UIScrollViewDelegate>)[self proxy] scrollViewDidScroll:scrollView_];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
   return [self wrapperView];
@@ -501,7 +501,7 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView_
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   CGSize boundsSize = scrollView.bounds.size;
   CGRect frameToCenter = wrapperView.frame;
   if (TiDimensionIsAuto(contentWidth) || TiDimensionIsAutoSize(contentWidth) || TiDimensionIsUndefined(contentWidth)) {
@@ -543,7 +543,7 @@
 
 - (void)scrollToShowView:(TiUIView *)firstResponderView withKeyboardHeight:(CGFloat)keyboardTop
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if ([scrollView isScrollEnabled]) {
     CGRect responderRect = [wrapperView convertRect:[firstResponderView bounds] fromView:firstResponderView];
     OffsetScrollViewForRect(scrollView, keyboardTop, minimumContentHeight, responderRect);

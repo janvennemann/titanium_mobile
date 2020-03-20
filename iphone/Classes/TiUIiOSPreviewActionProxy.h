@@ -20,7 +20,7 @@
 /**
     The style of the preview action
  */
-@property (nonatomic, assign) UIPreviewActionStyle style;
+@property (nonatomic, assign) UIPreviewActionStyle previewStyle;
 
 /**
     The title of the preview action

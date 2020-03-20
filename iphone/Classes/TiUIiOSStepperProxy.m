@@ -23,7 +23,7 @@ USE_VIEW_FOR_CONTENT_HEIGHT
   return NUMDOUBLE([[(TiUIiOSStepper *)[self view] stepper] value]);
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (TiDimension)defaultAutoWidthBehavior:(id)unused
 {
   return TiDimensionAutoSize;

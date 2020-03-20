@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 49;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -178,6 +178,9 @@
 		3AB913801BB61FDA0063A4AD /* TiUIiOSPreviewActionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9137F1BB61FDA0063A4AD /* TiUIiOSPreviewActionProxy.m */; };
 		3ABA85AB1D7204B100BCD3F1 /* TiAppiOSSearchQueryProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABA85AA1D7204B100BCD3F1 /* TiAppiOSSearchQueryProxy.m */; };
 		4A4D3A9022C0CE6A003D2DB7 /* TiUtils+Addons.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D3A8F22C0CE6A003D2DB7 /* TiUtils+Addons.m */; };
+		4AD3CCF22421229200E511F0 /* StretchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD3CCF12421229200E511F0 /* StretchKit.framework */; };
+		4AD3CCF32421229200E511F0 /* StretchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD3CCF12421229200E511F0 /* StretchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4AF5627B2432442B00421F9D /* LayoutNodeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF5627A2432442B00421F9D /* LayoutNodeRegistry.swift */; };
 		673144D6211DBAD7001BDBF2 /* TiUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 673144D5211DBAD7001BDBF2 /* TiUIApplication.m */; };
 		6CF8E95921CDA58800519245 /* TiUITabbedBarProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8E95821CDA58800519245 /* TiUITabbedBarProxy.m */; };
 		823CC8AC1B7F0E4D00D220C7 /* WatchSessionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 823CC8AB1B7F0E4D00D220C7 /* WatchSessionModule.m */; };
@@ -260,13 +263,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DB769E25210F138F004D9338 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DB90D7A4210DBF4300B4BE69 /* TitaniumKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DB258CCC1F09757E000D0D8D;
-			remoteInfo = TitaniumKit;
-		};
 		DB90D7A9210DBF4300B4BE69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DB90D7A4210DBF4300B4BE69 /* TitaniumKit.xcodeproj */;
@@ -291,6 +287,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				DB769E24210F138E004D9338 /* TitaniumKit.framework in Embed Frameworks */,
+				4AD3CCF32421229200E511F0 /* StretchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +635,9 @@
 		3ABA85AA1D7204B100BCD3F1 /* TiAppiOSSearchQueryProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiAppiOSSearchQueryProxy.m; sourceTree = "<group>"; };
 		4A4D3A8E22C0CE6A003D2DB7 /* TiUtils+Addons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TiUtils+Addons.h"; sourceTree = "<group>"; };
 		4A4D3A8F22C0CE6A003D2DB7 /* TiUtils+Addons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TiUtils+Addons.m"; sourceTree = "<group>"; };
+		4AD3CCEE242121F900E511F0 /* Titanium-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Titanium-Bridging-Header.h"; sourceTree = "<group>"; };
+		4AD3CCF12421229200E511F0 /* StretchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StretchKit.framework; path = ../Frameworks/StretchKit.framework; sourceTree = "<group>"; };
+		4AF5627A2432442B00421F9D /* LayoutNodeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutNodeRegistry.swift; sourceTree = "<group>"; };
 		50115A9315D5DE0500122055 /* ThirdpartyNS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThirdpartyNS.h; path = ../Classes/ThirdpartyNS.h; sourceTree = SOURCE_ROOT; };
 		673144D4211DBAD7001BDBF2 /* TiUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiUIApplication.h; path = ../Classes/TiUIApplication.h; sourceTree = "<group>"; };
 		673144D5211DBAD7001BDBF2 /* TiUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiUIApplication.m; path = ../Classes/TiUIApplication.m; sourceTree = "<group>"; };
@@ -796,6 +796,7 @@
 				84D4CA1619EF0B5A009131F8 /* CoreMotion.framework in Frameworks */,
 				841CCAD11807395C00C8DB76 /* CoreText.framework in Frameworks */,
 				D93DAA6D16CBFD7100AD64C9 /* EventKit.framework in Frameworks */,
+				4AD3CCF22421229200E511F0 /* StretchKit.framework in Frameworks */,
 				D93DAA6E16CBFD7100AD64C9 /* EventKitUI.framework in Frameworks */,
 				84BBA58816570F90006B8C22 /* Security.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -923,6 +924,7 @@
 				24CA8A0B111161E10084E2DE /* API */,
 				24EB07D1111D420D001DC2D1 /* DOM */,
 				24CA8A09111161D60084E2DE /* Modules */,
+				4AD3CCEE242121F900E511F0 /* Titanium-Bridging-Header.h */,
 				B637616A1BC5CA400070A695 /* TiLayout */,
 			);
 			name = Classes;
@@ -1635,6 +1637,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AD3CCF12421229200E511F0 /* StretchKit.framework */,
 				24D5C75811E6364F00F097E2 /* libtiverify.a */,
 				8465E6BB19F8644D008479E6 /* CoreMedia.framework */,
 				84D4CA1319EF0B3D009131F8 /* CoreMotion.framework */,
@@ -1986,6 +1989,7 @@
 				4A4D3A8F22C0CE6A003D2DB7 /* TiUtils+Addons.m */,
 				DBF30942210F37080001F770 /* TiWindowProxy+Addons.h */,
 				DBF30943210F37080001F770 /* TiWindowProxy+Addons.m */,
+				4AF5627A2432442B00421F9D /* LayoutNodeRegistry.swift */,
 			);
 			name = "TitaniumKit Extensions";
 			sourceTree = "<group>";
@@ -2016,7 +2020,6 @@
 			);
 			dependencies = (
 				DB90D7AD210DBF5400B4BE69 /* PBXTargetDependency */,
-				DB769E26210F138F004D9338 /* PBXTargetDependency */,
 			);
 			name = Titanium;
 			productName = Titanium;
@@ -2032,6 +2035,7 @@
 				LastUpgradeCheck = 1020;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -2298,6 +2302,7 @@
 				DA9BE36F127F8F6C000FE9E1 /* UIImageExtras.m in Sources */,
 				1923696220E48C2A00567508 /* TiUIiOSWebViewConfigurationProxy.m in Sources */,
 				24ADC5121299F60C0014DB75 /* TiAppiOSProxy.m in Sources */,
+				4AF5627B2432442B00421F9D /* LayoutNodeRegistry.swift in Sources */,
 				24ADC5161299F6AA0014DB75 /* TiAppiOSBackgroundServiceProxy.m in Sources */,
 				24ADC634129A1ED60014DB75 /* TiAppiOSLocalNotificationProxy.m in Sources */,
 				1592CC341C484F2F00C3DB83 /* TiUIiOSTableViewStyleProxy.m in Sources */,
@@ -2347,11 +2352,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DB769E26210F138F004D9338 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TitaniumKit;
-			targetProxy = DB769E25210F138F004D9338 /* PBXContainerItemProxy */;
-		};
 		DB90D7AD210DBF5400B4BE69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TitaniumKit;
@@ -2368,21 +2368,23 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Titanium_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "USE_TI_UILABEL=1";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Titanium.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2398,6 +2400,10 @@
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcelerator.titanium;
 				PRODUCT_NAME = Titanium;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = USE_TI_UILABEL;
+				SWIFT_OBJC_BRIDGING_HEADER = "../Classes/Titanium-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
 			};
@@ -2411,6 +2417,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2418,12 +2425,13 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Titanium_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "USE_TI_UILABEL=1";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Titanium.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_DEPENDENCY_INFO_FILE = "$(OBJECT_FILE_DIR_$(CURRENT_VARIANT))/$(CURRENT_ARCH)/$(PRODUCT_NAME)_dependency_info.dat";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2439,6 +2447,9 @@
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcelerator.titanium;
 				PRODUCT_NAME = Titanium;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = USE_TI_UILABEL;
+				SWIFT_OBJC_BRIDGING_HEADER = "../Classes/Titanium-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
 			};

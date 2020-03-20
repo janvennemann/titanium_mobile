@@ -95,7 +95,7 @@ static NSArray *scrollViewKeySequence;
 
 - (CGFloat)autoWidthForSize:(CGSize)size
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   BOOL flexibleContentWidth = YES;
   BOOL flexibleContentHeight = YES;
   CGSize contentSize = CGSizeMake(size.width, size.height);
@@ -158,7 +158,7 @@ static NSArray *scrollViewKeySequence;
 
 - (CGFloat)autoHeightForSize:(CGSize)size
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   BOOL flexibleContentWidth = YES;
   BOOL flexibleContentHeight = YES;
   CGSize contentSize = CGSizeMake(size.width, size.height);
@@ -232,7 +232,7 @@ static NSArray *scrollViewKeySequence;
 
 - (CGRect)computeChildSandbox:(TiViewProxy *)child withBounds:(CGRect)bounds
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   CGRect viewBounds = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
   CGRect contentSize = CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
   if ([self viewAttached]) {
@@ -308,7 +308,7 @@ static NSArray *scrollViewKeySequence;
   return YES;
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (UIView *)parentViewForChild:(TiViewProxy *)child
 {
   return [(TiUIScrollView *)[self view] wrapperView];

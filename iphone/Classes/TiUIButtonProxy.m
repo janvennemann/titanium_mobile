@@ -80,7 +80,7 @@
   return YES;
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (UIView *)parentViewForChild:(TiViewProxy *)child
 {
   return [(TiUIButton *)[self view] viewGroupWrapper];
@@ -131,7 +131,7 @@
   [super fireEvent:type withObject:obj propagate:propagate reportSuccess:report errorCode:code message:message];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (TiDimension)defaultAutoWidthBehavior:(id)unused
 {
   return TiDimensionAutoSize;

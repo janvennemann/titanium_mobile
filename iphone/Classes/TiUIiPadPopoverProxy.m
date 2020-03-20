@@ -346,7 +346,7 @@ static NSArray *popoverSequence;
 
 - (CGSize)contentSize
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   CGSize screenSize = [[UIScreen mainScreen] bounds].size;
   if (poWidth.type != TiDimensionTypeUndefined) {
     [contentViewProxy layoutProperties] -> width.type = poWidth.type;

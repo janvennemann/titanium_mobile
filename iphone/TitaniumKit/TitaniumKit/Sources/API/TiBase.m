@@ -117,7 +117,7 @@ NSString *const kTiApplicationShortcut = @"TiApplicationShortcut";
 NSString *const kTiApplicationLaunchedFromURL = @"TiApplicationLaunchedFromURL";
 NSString *const kTiTraitCollectionChanged = @"TiTraitCollectionChanged";
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 NSString *const kTiBehaviorSize = @"SIZE";
 NSString *const kTiBehaviorFill = @"FILL";
 NSString *const kTiBehaviorAuto = @"auto";

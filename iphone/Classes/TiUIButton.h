@@ -12,7 +12,7 @@
   @private
   UIButton *button;
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   //In the rare case where the button is treated as a view group, we must have
   //an empty wrapper for -[parentViewForChild:]
   UIView *viewGroupWrapper;
@@ -26,7 +26,7 @@
 }
 
 - (UIButton *)button;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (UIView *)viewGroupWrapper;
 #endif
 

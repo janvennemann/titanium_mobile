@@ -23,8 +23,20 @@
 /* Begin PBXBuildFile section */
 		4A175276218B64E70094C7B6 /* KrollTimerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A175274218B64E70094C7B6 /* KrollTimerManager.h */; };
 		4A175277218B64E70094C7B6 /* KrollTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A175275218B64E70094C7B6 /* KrollTimerManager.m */; };
+		4A36809C2383646C00FE39DD /* FlexLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A36809B2383646C00FE39DD /* FlexLayoutView.swift */; };
+		4A36809F238364CB00FE39DD /* CssStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A36809E238364CB00FE39DD /* CssStyle.swift */; };
+		4A3680A2238366A500FE39DD /* FlexLayoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3680A1238366A500FE39DD /* FlexLayoutService.swift */; };
+		4A3680A42384B5B000FE39DD /* FlexLayoutViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3680A32384B5B000FE39DD /* FlexLayoutViewProxy.swift */; };
+		4A3680A723856C9500FE39DD /* FlexLayoutView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A3680A523856C9500FE39DD /* FlexLayoutView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4A3680A823856C9500FE39DD /* FlexLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3680A623856C9500FE39DD /* FlexLayoutView.m */; };
+		4AD3CCE8241FE88900E511F0 /* LayoutContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3CCE7241FE88900E511F0 /* LayoutContext.swift */; };
+		4AD3CCEA241FFC6D00E511F0 /* StyleProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3CCE9241FFC6D00E511F0 /* StyleProxy.swift */; };
+		4AD3CCED24211F0300E511F0 /* TiUIViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3CCEC24211F0300E511F0 /* TiUIViewNode.swift */; };
+		4AF56279243237F700421F9D /* LayoutNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF56278243237F700421F9D /* LayoutNodeFactory.swift */; };
 		4AF8DEEB1F0C27D6006270E1 /* libAPSAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA197501F0C20E300B12D31 /* libAPSAnalytics.a */; };
 		4AF8DEEC1F0C27D9006270E1 /* libAPSHTTPClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA197511F0C20E300B12D31 /* libAPSHTTPClient.a */; };
+		4AFD65F223803797004CE974 /* StretchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AFD65F123803797004CE974 /* StretchKit.framework */; };
+		4AFD65F323803797004CE974 /* StretchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4AFD65F123803797004CE974 /* StretchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7624B6C216663C7000C365A /* ObjcProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = B7624B6A216663C7000C365A /* ObjcProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7624B6D216663C7000C365A /* ObjcProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B7624B6B216663C7000C365A /* ObjcProxy.m */; };
 		DB1596592075389000292B19 /* APIModule.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1596572075389000292B19 /* APIModule.m */; };
@@ -178,9 +190,34 @@
 		DBE66A37210F92FD00095F1E /* KrollWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE66A35210F92FD00095F1E /* KrollWrapper.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4AFD65F423803797004CE974 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4AFD65F323803797004CE974 /* StretchKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4A175274218B64E70094C7B6 /* KrollTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KrollTimerManager.h; sourceTree = "<group>"; };
 		4A175275218B64E70094C7B6 /* KrollTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KrollTimerManager.m; sourceTree = "<group>"; };
+		4A36809B2383646C00FE39DD /* FlexLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutView.swift; sourceTree = "<group>"; };
+		4A36809E238364CB00FE39DD /* CssStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CssStyle.swift; sourceTree = "<group>"; };
+		4A3680A1238366A500FE39DD /* FlexLayoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutService.swift; sourceTree = "<group>"; };
+		4A3680A32384B5B000FE39DD /* FlexLayoutViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutViewProxy.swift; sourceTree = "<group>"; };
+		4A3680A523856C9500FE39DD /* FlexLayoutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexLayoutView.h; sourceTree = "<group>"; };
+		4A3680A623856C9500FE39DD /* FlexLayoutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlexLayoutView.m; sourceTree = "<group>"; };
+		4AD3CCE7241FE88900E511F0 /* LayoutContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutContext.swift; sourceTree = "<group>"; };
+		4AD3CCE9241FFC6D00E511F0 /* StyleProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleProxy.swift; sourceTree = "<group>"; };
+		4AD3CCEC24211F0300E511F0 /* TiUIViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiUIViewNode.swift; sourceTree = "<group>"; };
+		4AF56278243237F700421F9D /* LayoutNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutNodeFactory.swift; sourceTree = "<group>"; };
+		4AFD65F123803797004CE974 /* StretchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StretchKit.framework; path = ../Frameworks/StretchKit.framework; sourceTree = "<group>"; };
 		B7624B6A216663C7000C365A /* ObjcProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcProxy.h; sourceTree = "<group>"; };
 		B7624B6B216663C7000C365A /* ObjcProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcProxy.m; sourceTree = "<group>"; };
 		DB1596572075389000292B19 /* APIModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIModule.m; sourceTree = "<group>"; };
@@ -349,6 +386,7 @@
 				DB258DAB1F097692000D0D8D /* JavaScriptCore.framework in Frameworks */,
 				4AF8DEEB1F0C27D6006270E1 /* libAPSAnalytics.a in Frameworks */,
 				4AF8DEEC1F0C27D9006270E1 /* libAPSHTTPClient.a in Frameworks */,
+				4AFD65F223803797004CE974 /* StretchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +570,7 @@
 				DB258D531F097680000D0D8D /* TiToolbar.h */,
 				DB258D551F097680000D0D8D /* TiUIView.h */,
 				DB258D561F097680000D0D8D /* TiUIView.m */,
+				4AD3CCEC24211F0300E511F0 /* TiUIViewNode.swift */,
 				DB258DB61F09770C000D0D8D /* TiUtils.h */,
 				DB258DB71F09770C000D0D8D /* TiUtils.m */,
 				DB15FD121F0A897B00A82C45 /* TiViewController.h */,
@@ -554,6 +593,15 @@
 				DB15FC5E1F0A84C900A82C45 /* Webcolor.m */,
 				DB15FC471F0A83A700A82C45 /* WebFont.h */,
 				DB15FC481F0A83A700A82C45 /* WebFont.m */,
+				4A3680A1238366A500FE39DD /* FlexLayoutService.swift */,
+				4AF56278243237F700421F9D /* LayoutNodeFactory.swift */,
+				4A36809B2383646C00FE39DD /* FlexLayoutView.swift */,
+				4A3680A32384B5B000FE39DD /* FlexLayoutViewProxy.swift */,
+				4A36809E238364CB00FE39DD /* CssStyle.swift */,
+				4AD3CCE9241FFC6D00E511F0 /* StyleProxy.swift */,
+				4A3680A523856C9500FE39DD /* FlexLayoutView.h */,
+				4A3680A623856C9500FE39DD /* FlexLayoutView.m */,
+				4AD3CCE7241FE88900E511F0 /* LayoutContext.swift */,
 			);
 			name = API;
 			path = Sources/API;
@@ -562,6 +610,7 @@
 		DB258DA91F097691000D0D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AFD65F123803797004CE974 /* StretchKit.framework */,
 				DBA197501F0C20E300B12D31 /* libAPSAnalytics.a */,
 				DBA197511F0C20E300B12D31 /* libAPSHTTPClient.a */,
 				DB258DAC1F097697000D0D8D /* Foundation.framework */,
@@ -626,6 +675,7 @@
 				DB3908682075228900AE31EC /* APSHTTPClient.h in Headers */,
 				DB15FBF41F0A80FA00A82C45 /* TiPublicAPI.h in Headers */,
 				DB15FC6F1F0A84FD00A82C45 /* TiBlob.h in Headers */,
+				4A3680A723856C9500FE39DD /* FlexLayoutView.h in Headers */,
 				DB15FC731F0A850E00A82C45 /* Mimetypes.h in Headers */,
 				DB258D611F097680000D0D8D /* Bridge.h in Headers */,
 				DB258D631F097680000D0D8D /* KrollBridge.h in Headers */,
@@ -715,6 +765,7 @@
 				DB258CC91F09757E000D0D8D /* Frameworks */,
 				DB258CCA1F09757E000D0D8D /* Headers */,
 				DB258CCB1F09757E000D0D8D /* Resources */,
+				4AFD65F423803797004CE974 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -736,6 +787,7 @@
 				TargetAttributes = {
 					DB258CCC1F09757E000D0D8D = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 1120;
 						ProvisioningStyle = Automatic;
 					};
 					DB9635BE1F0AB4AC00C41B20 = {
@@ -796,6 +848,7 @@
 			files = (
 				DB15FD091F0A892500A82C45 /* Ti3DMatrix.m in Sources */,
 				DB15FCB91F0A874F00A82C45 /* TopTiModule.m in Sources */,
+				4A3680A42384B5B000FE39DD /* FlexLayoutViewProxy.swift in Sources */,
 				DB15FC4E1F0A848200A82C45 /* TiApp.m in Sources */,
 				DB15FCB11F0A86E600A82C45 /* TiBindingTiValue.m in Sources */,
 				DB15FC461F0A838E00A82C45 /* TiColor.m in Sources */,
@@ -810,15 +863,20 @@
 				DB15FD351F0A95C500A82C45 /* TiUIViewProxy.m in Sources */,
 				DB15FC911F0A85EE00A82C45 /* TiFilesystemFileProxy.m in Sources */,
 				DB258D891F097680000D0D8D /* TiModule.m in Sources */,
+				4AD3CCEA241FFC6D00E511F0 /* StyleProxy.swift in Sources */,
 				DB15FD1B1F0A89A400A82C45 /* TiUIWindow.m in Sources */,
 				DB15FD151F0A897B00A82C45 /* TiViewController.m in Sources */,
 				DB15FCAD1F0A86D400A82C45 /* TiLogServer.m in Sources */,
 				4A175277218B64E70094C7B6 /* KrollTimerManager.m in Sources */,
+				4AF56279243237F700421F9D /* LayoutNodeFactory.swift in Sources */,
 				DB258D6C1F097680000D0D8D /* TiBase.m in Sources */,
 				DB15FC4A1F0A83A700A82C45 /* WebFont.m in Sources */,
+				4A36809F238364CB00FE39DD /* CssStyle.swift in Sources */,
+				4AD3CCED24211F0300E511F0 /* TiUIViewNode.swift in Sources */,
 				DB15FC701F0A84FD00A82C45 /* TiBlob.m in Sources */,
 				DB15FD0D1F0A894000A82C45 /* TiWindowProxy.m in Sources */,
 				DB15FC991F0A862000A82C45 /* TiPoint.m in Sources */,
+				4AD3CCE8241FE88900E511F0 /* LayoutContext.swift in Sources */,
 				DB1596632075461400292B19 /* SBJSON.m in Sources */,
 				DB15FCA11F0A863B00A82C45 /* LayoutConstraint.m in Sources */,
 				DB15FC9D1F0A862D00A82C45 /* ListenerEntry.m in Sources */,
@@ -833,6 +891,7 @@
 				DB258D641F097680000D0D8D /* KrollBridge.m in Sources */,
 				DB15FD2D1F0A93EF00A82C45 /* TiStreamProxy.m in Sources */,
 				DB15FD1D1F0A89A400A82C45 /* TiUIWindowProxy.m in Sources */,
+				4A3680A823856C9500FE39DD /* FlexLayoutView.m in Sources */,
 				DB258D9E1F097680000D0D8D /* TiUIView.m in Sources */,
 				DB15FCC91F0A879B00A82C45 /* ImageLoader.m in Sources */,
 				DB15FC581F0A84B700A82C45 /* TiFile.m in Sources */,
@@ -841,6 +900,7 @@
 				DB15FC681F0A84E000A82C45 /* TiStylesheet.m in Sources */,
 				DB15FD251F0A8A7B00A82C45 /* TiBindingEvent.m in Sources */,
 				DB15FBEF1F0A80E400A82C45 /* TiDimension.m in Sources */,
+				4A36809C2383646C00FE39DD /* FlexLayoutView.swift in Sources */,
 				DB258DA21F097680000D0D8D /* TiViewProxy.m in Sources */,
 				DB15FC781F0A851A00A82C45 /* TiRootViewController.m in Sources */,
 				DB15FCD11F0A87C100A82C45 /* NSData+Additions.m in Sources */,
@@ -848,6 +908,7 @@
 				DB15FC601F0A84C900A82C45 /* Webcolor.m in Sources */,
 				DB15FC8A1F0A859800A82C45 /* TiExceptionHandler.m in Sources */,
 				DB24E0512076824C0033B2B1 /* TiSharedConfig.m in Sources */,
+				4A3680A2238366A500FE39DD /* FlexLayoutService.swift in Sources */,
 				DB15FC951F0A860600A82C45 /* TiAnimation.m in Sources */,
 				DB15FC341F0A833100A82C45 /* KrollCallback.m in Sources */,
 				DB15FCA91F0A866300A82C45 /* TiRect.m in Sources */,
@@ -988,6 +1049,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -997,12 +1059,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../Frameworks";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				INFOPLIST_FILE = TitaniumKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1021,6 +1084,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcelerator.TitaniumKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TI_USE_FLEXLAYOUT = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
@@ -1029,6 +1095,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1038,11 +1105,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../Frameworks";
 				GCC_WARN_UNDECLARED_SELECTOR = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				INFOPLIST_FILE = TitaniumKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1060,6 +1128,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcelerator.TitaniumKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TI_USE_FLEXLAYOUT = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;

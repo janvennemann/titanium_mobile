@@ -45,7 +45,7 @@
   [super dealloc];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (CGSize)sizeForFont:(CGFloat)suggestedWidth
 {
   NSAttributedString *value = [messageLabel attributedText];
@@ -114,7 +114,7 @@
 
 - (void)layoutSubviews
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (progress == nil) {
     return;
   }

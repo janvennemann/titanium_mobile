@@ -4,6 +4,9 @@
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
+
+#define TI_USE_FLEXLAYOUT
+
 #import "TiUIView.h"
 #import "ImageLoader.h"
 #import "Ti2DMatrix.h"
@@ -16,6 +19,8 @@
 #import "TiUtils.h"
 #import "TiViewProxy.h"
 #import "UIImage+Resize.h"
+
+#import <FlexLayoutView.h>
 
 void InsetScrollViewForKeyboard(UIScrollView *scrollView, CGFloat keyboardTop, CGFloat minimumContentHeight)
 {
@@ -203,17 +208,6 @@ DEFINE_EXCEPTIONS
   }
 }
 
-#ifdef TI_USE_AUTOLAYOUT
-- (void)initializeTiLayoutView
-{
-  [super initializeTiLayoutView];
-  if ([self class] == [TiUIView class]) {
-    [self setDefaultHeight:TiDimensionAutoFill];
-    [self setDefaultWidth:TiDimensionAutoFill];
-  }
-}
-#endif
-
 - (id)init
 {
   self = [super init];
@@ -284,14 +278,8 @@ DEFINE_EXCEPTIONS
   [self updateTouchHandling];
   [[self proxy] setValue:NUMBOOL([TiUtils boolValue:[[self proxy] valueForKey:@"touchEnabled"] def:YES]) forKey:@"touchEnabled"];
   self.backgroundColor = [UIColor clearColor];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-#else
-  if (!self.translatesAutoresizingMaskIntoConstraints) {
-    self.autoresizingMask = UIViewAutoresizingNone;
-  } else {
-    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  }
 #endif
 }
 
@@ -391,7 +379,7 @@ DEFINE_EXCEPTIONS
 {
   [super setFrame:frame];
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   // this happens when a view is added to another view but not
   // through the framework (such as a tableview header) and it
   // means we need to force the layout of our children
@@ -404,7 +392,7 @@ DEFINE_EXCEPTIONS
 
 - (void)checkBounds
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   CGRect newBounds = [self bounds];
   if (!CGSizeEqualToSize(oldSize, newBounds.size)) {
     oldSize = newBounds.size;

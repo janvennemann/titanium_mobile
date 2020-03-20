@@ -50,7 +50,7 @@
   [super dealloc];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (CGSize)sizeThatFits:(CGSize)testSize;
 {
   CGSize spinnySize = [[self indicatorView] sizeThatFits:CGSizeZero];
@@ -140,7 +140,7 @@
   return [self messageLabel];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
   [self setNeedsLayout];
@@ -220,7 +220,7 @@
 
   style = newStyle;
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (indicatorView != nil) {
     [indicatorView setActivityIndicatorViewStyle:style];
     CGRect newBounds;
@@ -300,7 +300,7 @@
   [super didMoveToWindow];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (CGFloat)contentWidthForWidth:(CGFloat)suggestedWidth
 {
   return [self sizeThatFits:CGSizeZero].width;

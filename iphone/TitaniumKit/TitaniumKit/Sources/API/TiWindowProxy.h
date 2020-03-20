@@ -10,6 +10,8 @@
 
 #import "TiUIiOSTransitionAnimationProxy.h"
 
+@class FlexLayoutService;
+
 @interface TiWindowProxy : TiViewProxy <TiWindowProtocol, TiAnimationDelegate> {
   @protected
   TiViewController *controller;
@@ -35,6 +37,10 @@
 @property (nonatomic) BOOL isMasterWindow;
 @property (nonatomic) BOOL isDetailWindow;
 @property (nonatomic) BOOL safeAreaInsetsUpdated;
+
+#ifdef TI_USE_FLEXLAYOUT
+@property (nonatomic, strong) FlexLayoutService *layoutService;
+#endif
 
 - (void)processForSafeArea;
 - (UIViewController *)windowHoldingController;

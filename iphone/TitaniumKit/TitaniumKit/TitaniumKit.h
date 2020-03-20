@@ -13,8 +13,12 @@ FOUNDATION_EXPORT double TitaniumKitVersionNumber;
 //! Project version string for TitaniumKit.
 FOUNDATION_EXPORT const unsigned char TitaniumKitVersionString[];
 
+#define TI_USE_FLEXLAYOUT 1
+
 // TiBase.h needs to come first because of all the macro definitions
 #import <TitaniumKit/TiBase.h>
+
+#import <TitaniumKit/FlexLayoutView.h>
 
 #import <TitaniumKit/APIModule.h>
 #import <TitaniumKit/APSAnalytics.h>

@@ -238,7 +238,7 @@ TiProxy *DeepScanForProxyOfViewContainingPoint(UIView *targetView, CGPoint point
         return;
       }
     }
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     layoutProperties.layoutStyle = TiLayoutRuleFromObject(value);
 #else
     [[self currentRowContainerView] setLayout_:value];
@@ -294,7 +294,7 @@ TiProxy *DeepScanForProxyOfViewContainingPoint(UIView *targetView, CGPoint point
     return height.value;
   }
   CGFloat result = 0;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (TiDimensionIsAuto(height) || TiDimensionIsAutoSize(height) || TiDimensionIsUndefined(height)) {
     result = [self minimumParentHeightForSize:CGSizeMake(width, [self table].bounds.size.height)];
   }
@@ -302,8 +302,10 @@ TiProxy *DeepScanForProxyOfViewContainingPoint(UIView *targetView, CGPoint point
     result = TiDimensionCalculateValue(height, [self table].bounds.size.height);
   }
 #else
-  result = [(TiLayoutView *)[self currentRowContainerView] heightIfWidthWere:width];
-  result = result == 0 ? 0 : result + 1;
+  // @todo read properties from css style
+  // self.layoutContext.cssStyle.height etc
+  //result = [(TiLayoutView *)[self currentRowContainerView] heightIfWidthWere:width];
+  //result = result == 0 ? 0 : result + 1;
 #endif
   return (result == 0) ? [table tableRowHeight:0] : result;
 }
@@ -545,7 +547,7 @@ TiProxy *DeepScanForProxyOfViewContainingPoint(UIView *targetView, CGPoint point
     return;
   }
   modifyingRow = YES;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   [TiLayoutQueue layoutProxy:self];
 #endif
   modifyingRow = NO;

@@ -13,7 +13,7 @@
 - (void)_initWithProperties:(NSDictionary *)properties
 {
   [self setTitle:[TiUtils stringValue:[properties valueForKey:@"title"]]];
-  [self setStyle:[TiUtils intValue:[properties valueForKey:@"style"] def:UIPreviewActionStyleDefault]];
+  [self setPreviewStyle:[TiUtils intValue:[properties valueForKey:@"previewStyle"] def:UIPreviewActionStyleDefault]];
 
   [super _initWithProperties:properties];
 }
@@ -36,7 +36,7 @@
 {
   if (action == nil) {
     action = [[UIPreviewAction actionWithTitle:_title
-                                         style:_style
+                                         style:_previewStyle
                                        handler:^void(UIPreviewAction *_action, UIViewController *_controller) {
                                          if ([self _hasListeners:@"click"]) {
                                            [self fireEventWithAction:_action];
@@ -52,7 +52,7 @@
   NSMutableDictionary *event = [[NSMutableDictionary alloc] initWithDictionary:@{
     @"index" : NUMINTEGER([self actionIndex]),
     @"title" : [self title],
-    @"style" : NUMINT([self style])
+    @"style" : NUMINT([self previewStyle])
   }];
 
   if ([self listViewEvent] != nil) {

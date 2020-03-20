@@ -5,11 +5,15 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
+#define TI_USE_FLEXLAYOUT
+
 #import "TiWindowProxy.h"
 #import "TiApp.h"
 #import "TiErrorController.h"
 #import "TiUIWindow.h"
 #import "TiUIWindowProxy.h"
+
+#import <TitaniumKit/TitaniumKit-Swift.h>
 
 @interface TiWindowProxy (Private)
 - (void)openOnUIThread:(id)args;
@@ -48,6 +52,7 @@
 {
   forceModal = YES;
   [self replaceValue:nil forKey:@"orientationModes" notification:NO];
+  self.layoutService = [[FlexLayoutService alloc] init];
   [super _configure];
 }
 
@@ -901,7 +906,7 @@
         TiViewProxy *theProxy = (TiViewProxy *)[(TiUIView *)animatedOver proxy];
         if ([theProxy viewAttached]) {
           [[[self view] superview] insertSubview:animatedOver belowSubview:[self view]];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
           LayoutConstraint *layoutProps = [theProxy layoutProperties];
           ApplyConstraintToViewWithBounds(layoutProps, (TiUIView *)animatedOver, [[animatedOver superview] bounds]);
 #endif
@@ -937,5 +942,21 @@
 {
   // Overridden in subclass
 }
+
+#ifdef TI_USE_FLEXLAYOUT
+- (TiUIView *)view
+{
+  TiUIView *view = [super view];
+  if (self.layoutService.rootView == nil) {
+    self.layoutService.rootView = view;
+  }
+  return view;
+}
+
+- (FlexLayoutService *)getLayoutService
+{
+  return self.layoutService;
+}
+#endif
 
 @end

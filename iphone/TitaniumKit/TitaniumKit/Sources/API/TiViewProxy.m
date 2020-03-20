@@ -20,6 +20,8 @@
 #import <libkern/OSAtomic.h>
 #import <pthread.h>
 
+#import <TitaniumKit/TitaniumKit-Swift.h>
+
 #define IGNORE_IF_NOT_OPENED                 \
   if (!windowOpened || ![self viewAttached]) \
     return;
@@ -249,17 +251,29 @@ static NSArray *touchEventsArray;
       [childView parentWillShow];
     }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     // If layout is non absolute push this into the layout queue
     // else just layout the child with current bounds
     if (!TiLayoutRuleIsAbsolute(layoutProperties.layoutStyle)) {
       [self contentsWillChange];
-    } else
-#endif
-    {
+    } else {
       [self layoutChild:childView optimize:NO withMeasuredBounds:[[self view] bounds]];
     }
+#endif
   }
+
+#ifdef TI_USE_FLEXLAYOUT
+  UIView *ourView = [self parentViewForChild:childView];
+
+  if (ourView == nil) {
+    return;
+  }
+
+  TiUIView *cv = [childView view];
+  if ([cv superview] != ourView) {
+    [self insertSubview:cv forProxy:childView];
+  }
+#endif
 }
 
 - (void)insertAt:(id)args
@@ -454,7 +468,7 @@ static NSArray *touchEventsArray;
   [self animate:arg];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 
 #define CHECK_LAYOUT_UPDATE(layoutName, value)           \
   if (ENFORCE_BATCH_UPDATE) {                            \
@@ -597,7 +611,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)setZIndex:(id)value
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   CHECK_LAYOUT_UPDATE(zIndex, value);
 #endif
   if ([value respondsToSelector:@selector(intValue)]) {
@@ -624,7 +638,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
   return nil;
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)setCenter:(id)value
 {
   CHECK_LAYOUT_UPDATE(center, value);
@@ -724,7 +738,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
     TiUIView *myview = [self view];
     CGSize size = myview.bounds.size;
     if (CGSizeEqualToSize(size, CGSizeZero) || size.width == 0 || size.height == 0) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
       CGFloat width = [self autoWidthForSize:CGSizeMake(1000, 1000)];
       CGFloat height = [self autoHeightForSize:CGSizeMake(width, 0)];
 #else
@@ -798,12 +812,14 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 {
   parent = parent_;
 
+  self.layoutContext.parent = parent_;
+
   if (parent_ != nil && [parent windowHasOpened]) {
     [self windowWillOpen];
   }
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (LayoutConstraint *)layoutProperties
 {
   return &layoutProperties;
@@ -829,7 +845,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
   }
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (CGFloat)autoWidthForSize:(CGSize)size
 {
   CGFloat suggestedWidth = size.width;
@@ -878,7 +894,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 }
 #endif
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (CGFloat)autoHeightForSize:(CGSize)size
 {
   CGFloat width = size.width;
@@ -930,7 +946,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 }
 #endif
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (CGFloat)minimumParentWidthForSize:(CGSize)size
 {
   CGFloat suggestedWidth = size.width;
@@ -971,7 +987,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 }
 #endif
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (CGFloat)minimumParentHeightForSize:(CGSize)size
 {
   CGFloat suggestedHeight = size.height;
@@ -1027,7 +1043,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 - (TiUIView *)barButtonViewForSize:(CGSize)bounds
 {
   TiUIView *barButtonView = [self view];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   //TODO: This logic should have a good place in case that refreshLayout is used.
   LayoutConstraint barButtonLayout = layoutProperties;
   if (TiDimensionIsUndefined(barButtonLayout.width)) {
@@ -1111,8 +1127,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
     [childrenArray release];
     [self viewDidAttach];
     [view updateClipping];
-#ifndef TI_USE_AUTOLAYOUT
-
+#ifndef TI_USE_FLEXLAYOUT
     // If parent has a non absolute layout signal the parent that
     //contents will change else just lay ourselves out
     if (parent != nil && (!TiLayoutRuleIsAbsolute([parent layoutProperties] -> layoutStyle))) {
@@ -1215,7 +1230,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
   windowOpened = YES;
   windowOpening = YES;
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   BOOL absoluteLayout = TiLayoutRuleIsAbsolute(layoutProperties.layoutStyle);
 #endif
   // If the window was previously opened, it may need to have
@@ -1223,7 +1238,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
   // Maybe need to call layout children instead for non absolute layout
   if (children != nil) {
     for (TiViewProxy *child in children) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
       if (absoluteLayout) {
         [self layoutChild:child optimize:NO withMeasuredBounds:[[self size] rect]];
       }
@@ -1234,7 +1249,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
   pthread_rwlock_unlock(&childrenLock);
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   //TIMOB-17923 - Do a full layout pass (set proper sandbox) if non absolute layout
   if (!absoluteLayout) {
     [self layoutChildren:NO];
@@ -1400,12 +1415,18 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
   return self;
 }
 
+- (void)_configure
+{
+  self.style = [[[StyleProxy alloc] _initWithPageContext:self.pageContext] autorelease];
+  self.layoutContext = [[LayoutContext alloc] initWithProxy:self];
+}
+
 - (void)_initWithProperties:(NSDictionary *)properties
 {
   updateStarted = YES;
   allowLayoutUpdate = NO;
 // Set horizontal layout wrap:true as default
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   layoutProperties.layoutFlags.horizontalWrap = YES;
 #endif
   [self initializeProperty:@"horizontalWrap"
@@ -1825,7 +1846,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)willEnqueue
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   SET_AND_PERFORM(TiRefreshViewEnqueued, return );
   [TiLayoutQueue addViewProxy:self];
 #endif
@@ -1833,7 +1854,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)willEnqueueIfVisible
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (parentVisible && !hidden) {
     [self willEnqueue];
   }
@@ -1842,7 +1863,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)willChangeSize
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   SET_AND_PERFORM(TiRefreshViewSize, return );
 
   if (!TiLayoutRuleIsAbsolute(layoutProperties.layoutStyle)) {
@@ -1862,7 +1883,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)willChangePosition
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   SET_AND_PERFORM(TiRefreshViewPosition, return );
 
   if (TiDimensionIsUndefined(layoutProperties.width) || TiDimensionIsUndefined(layoutProperties.height)) { //The only time size can be changed by the margins is if the margins define the size.
@@ -1875,7 +1896,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)willChangeZIndex
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   SET_AND_PERFORM(TiRefreshViewZIndex, );
   //Nothing cascades from here.
   [self willEnqueueIfVisible];
@@ -1922,7 +1943,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 - (BOOL)widthIsAutoSize
 {
   BOOL isAutoSize = NO;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (TiDimensionIsAutoSize(layoutProperties.width)) {
     isAutoSize = YES;
   } else if (TiDimensionIsAuto(layoutProperties.width) && TiDimensionIsAutoSize([self defaultAutoWidthBehavior:nil])) {
@@ -1949,7 +1970,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 - (BOOL)heightIsAutoSize
 {
   BOOL isAutoSize = NO;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (TiDimensionIsAutoSize(layoutProperties.height)) {
     isAutoSize = YES;
   } else if (TiDimensionIsAuto(layoutProperties.height) && TiDimensionIsAutoSize([self defaultAutoHeightBehavior:nil])) {
@@ -1976,7 +1997,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 - (BOOL)widthIsAutoFill
 {
   BOOL isAutoFill = NO;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   BOOL followsFillBehavior = TiDimensionIsAutoFill([self defaultAutoWidthBehavior:nil]);
 
   if (TiDimensionIsAutoFill(layoutProperties.width)) {
@@ -2007,7 +2028,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 - (BOOL)heightIsAutoFill
 {
   BOOL isAutoFill = NO;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   BOOL followsFillBehavior = TiDimensionIsAutoFill([self defaultAutoHeightBehavior:nil]);
 
   if (TiDimensionIsAutoFill(layoutProperties.height)) {
@@ -2037,7 +2058,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)contentsWillChange
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   BOOL isAutoSize = [self widthIsAutoSize] || [self heightIsAutoSize];
 
   if (isAutoSize) {
@@ -2051,7 +2072,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)parentSizeWillChange
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   //	if not dip, change size
   if (!TiDimensionIsDip(layoutProperties.width) || !TiDimensionIsDip(layoutProperties.height)) {
     [self willChangeSize];
@@ -2064,7 +2085,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)parentWillRelay
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   //	if percent or undefined size, change size
   if (TiDimensionIsUndefined(layoutProperties.width) || TiDimensionIsUndefined(layoutProperties.height) || TiDimensionIsPercent(layoutProperties.width) || TiDimensionIsPercent(layoutProperties.height)) {
     [self willChangeSize];
@@ -2102,7 +2123,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 // Need this so we can overload the sandbox bounds on split view detail/master
 - (void)determineSandboxBounds
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   UIView *ourSuperview = [[self view] superview];
   if (ourSuperview == nil) {
     //TODO: Should we even be relaying out? I guess so.
@@ -2115,7 +2136,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)refreshView:(TiUIView *)transferView
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   WARN_IF_BACKGROUND_THREAD_OBJ;
   OSAtomicTestAndClearBarrier(TiRefreshViewEnqueued, &dirtyflags);
 
@@ -2197,14 +2218,14 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)refreshPosition
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   OSAtomicTestAndClearBarrier(TiRefreshViewPosition, &dirtyflags);
 #endif
 }
 
 - (void)refreshSize
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   OSAtomicTestAndClearBarrier(TiRefreshViewSize, &dirtyflags);
 #endif
 }
@@ -2257,7 +2278,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)relayout
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (!repositioning) {
     ENSURE_UI_THREAD_0_ARGS
 
@@ -2330,7 +2351,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
   if ([self viewAttached]) {
     // if not visible, ignore layout
     if (view.hidden) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
       OSAtomicTestAndClearBarrier(TiRefreshViewEnqueued, &dirtyflags);
 #endif
       return;
@@ -2338,7 +2359,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
     [self refreshView:nil];
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     BOOL wasSet = OSAtomicTestAndClearBarrier(NEEDS_LAYOUT_CHILDREN, &dirtyflags);
     if (wasSet && [self viewAttached]) {
       [self layoutChildren:NO];
@@ -2349,7 +2370,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (BOOL)willBeRelaying
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   DeveloperLog(@"DIRTY FLAGS %d WILLBERELAYING %d", dirtyflags, (*((char *)&dirtyflags) & (1 << (7 - TiRefreshViewEnqueued))));
   return ((*((char *)&dirtyflags) & (1 << (7 - TiRefreshViewEnqueued))) != 0);
 #else
@@ -2359,7 +2380,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)childWillResize:(TiViewProxy *)child
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   [self contentsWillChange];
 
   IGNORE_IF_NOT_OPENED
@@ -2402,7 +2423,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (NSArray *)measureChildren:(NSArray *)childArray
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if ([childArray count] == 0) {
     return nil;
   }
@@ -2483,7 +2504,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (CGRect)computeChildSandbox:(TiViewProxy *)child withBounds:(CGRect)bounds
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (TiLayoutRuleIsVertical(layoutProperties.layoutStyle)) {
     BOOL followsFillBehavior = TiDimensionIsAutoFill([child defaultAutoHeightBehavior:nil]);
     bounds.origin.y = verticalLayoutBoundary;
@@ -2765,7 +2786,7 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
 
 - (void)layoutChildren:(BOOL)optimize
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   IGNORE_IF_NOT_OPENED
 
   verticalLayoutBoundary = 0.0;
@@ -2972,6 +2993,31 @@ LAYOUTFLAGS_SETTER(setHorizontalWrap, horizontalWrap, horizontalWrap, [self will
   ENSURE_UI_THREAD_1_ARG(arg);
   if (view != nil)
     [self.view endEditing:YES];
+}
+
+- (FlexLayoutService *)layoutService
+{
+  if (_layoutService != nil) {
+    return _layoutService;
+  }
+
+  if (self.parent != nil) {
+    return self.parent.layoutService;
+  }
+
+  NSLog(@"No layout service found");
+  return nil;
+}
+
+- (void)setStyle:(id)args
+{
+  if ([args isKindOfClass:StyleProxy.class]) {
+    _style = args;
+  } else if ([args isKindOfClass:NSDictionary.class]) {
+    [self.style _initWithProperties:args];
+  }
+  
+  [self.layoutContext applyStyle];
 }
 
 @end

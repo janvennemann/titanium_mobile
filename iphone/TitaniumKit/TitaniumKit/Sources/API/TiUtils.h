@@ -444,7 +444,7 @@ typedef enum {
  */
 + (TiColor *)colorValue:(NSString *)name properties:(NSDictionary *)properties def:(TiColor *)def exists:(BOOL *)exists;
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 /**
  Looks up a value for the key in the provided dictionary and returns it as a dimension.
 
@@ -473,7 +473,7 @@ typedef enum {
 
 + (TiColor *)colorValue:(NSString *)name properties:(NSDictionary *)properties def:(TiColor *)def;
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 + (TiDimension)dimensionValue:(NSString *)name properties:(NSDictionary *)properties def:(TiDimension)def;
 #endif
 
@@ -495,7 +495,7 @@ typedef enum {
 
 + (TiColor *)colorValue:(NSString *)name properties:(NSDictionary *)properties;
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 + (TiDimension)dimensionValue:(NSString *)name properties:(NSDictionary *)properties;
 #endif
 + (NSDictionary *)pointToDictionary:(CGPoint)point;

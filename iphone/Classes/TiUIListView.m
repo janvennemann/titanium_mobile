@@ -152,7 +152,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
 - (TiViewProxy *)initWrapperProxy
 {
   TiViewProxy *theProxy = [[TiViewProxy alloc] init];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   LayoutConstraint *viewLayout = [theProxy layoutProperties];
   viewLayout->width = TiDimensionAutoFill;
   viewLayout->height = TiDimensionAutoSize;
@@ -184,7 +184,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
 - (void)configureHeaders
 {
   _headerViewProxy = [self initWrapperProxy];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   LayoutConstraint *viewLayout = [_headerViewProxy layoutProperties];
   viewLayout->layoutStyle = TiLayoutRuleVertical;
 #endif
@@ -256,7 +256,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
 {
   if (![searchController isActive]) {
     [searchViewProxy ensureSearchBarHierarchy];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     if (_searchWrapper != nil) {
       CGFloat rowWidth = [self computeRowWidth:_tableView];
       if (rowWidth > 0) {
@@ -399,7 +399,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
   }
   TiViewProxy *viewproxy = [proxy valueForKey:location];
   if (viewproxy != nil && [viewproxy isKindOfClass:[TiViewProxy class]]) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     LayoutConstraint *viewLayout = [viewproxy layoutProperties];
     //If height is not dip, explicitly set it to SIZE
     if (viewLayout->height.type != TiDimensionTypeDip) {
@@ -805,7 +805,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
     _pullViewProxy = [args retain];
     TiColor *pullBgColor = [TiUtils colorValue:[_pullViewProxy valueForUndefinedKey:@"pullBackgroundColor"]];
     _pullViewWrapper.backgroundColor = ((pullBgColor == nil) ? [UIColor lightGrayColor] : [pullBgColor color]);
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     LayoutConstraint *viewLayout = [_pullViewProxy layoutProperties];
     // If height is not dip, explicitly set it to SIZE
     if (viewLayout->height.type != TiDimensionTypeDip) {
@@ -1721,7 +1721,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
   CGFloat size = 0.0;
   if (view != nil) {
     TiViewProxy *viewProxy = (TiViewProxy *)[view proxy];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     LayoutConstraint *viewLayout = [viewProxy layoutProperties];
     switch (viewLayout->height.type) {
     case TiDimensionTypeDip:
@@ -1778,7 +1778,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
   CGFloat size = 0.0;
   if (view != nil) {
     TiViewProxy *viewProxy = (TiViewProxy *)[view proxy];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     LayoutConstraint *viewLayout = [viewProxy layoutProperties];
     switch (viewLayout->height.type) {
     case TiDimensionTypeDip:
@@ -1858,7 +1858,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
           }
           if (maxWidth > 0) {
             TiUIListItemProxy *theProxy = [theCell proxy];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
             [theProxy layoutProperties] -> height = TiDimensionAutoSize;
             [theProxy layoutProperties] -> width = TiDimensionAutoFill;
 #endif
@@ -2054,7 +2054,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
   if (_searchWrapper != nil) {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
     [_searchWrapper layoutProperties] -> right = TiDimensionDip(0);
 #endif
     [_searchWrapper refreshView:nil];
@@ -2499,7 +2499,7 @@ static TiViewProxy *FindViewProxyWithBindIdContainingPoint(UIView *view, CGPoint
   [titleProxy setValue:@"white" forKey:@"shadowColor"];
   [titleProxy setValue:[NSDictionary dictionaryWithObjectsAndKeys:@"0", @"x", @"1", @"y", nil] forKey:@"shadowOffset"];
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   LayoutConstraint *viewLayout = [titleProxy layoutProperties];
   viewLayout->width = TiDimensionAutoFill;
   viewLayout->height = TiDimensionAutoSize;

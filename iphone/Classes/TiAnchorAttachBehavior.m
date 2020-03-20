@@ -67,7 +67,7 @@
 - (void)updatePositioning
 {
   CGPoint center = [[_item view] center];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   LayoutConstraint *constraint = [_item layoutProperties];
   constraint->centerX = TiDimensionDip(center.x);
   constraint->centerY = TiDimensionDip(center.y);

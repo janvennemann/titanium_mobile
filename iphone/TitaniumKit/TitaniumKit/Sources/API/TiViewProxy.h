@@ -10,6 +10,10 @@
 #import "TiViewTemplate.h"
 #import <pthread.h>
 
+@class StyleProxy;
+@class LayoutContext;
+@class FlexLayoutService;
+
 /**
  Protocol for views that can receive keyboard focus.
  */
@@ -90,12 +94,16 @@ enum {
  The class represents a proxy that is attached to a view.
  The class is not intended to be overriden.
  */
+#ifdef TI_USE_FLEXLAYOUT
+@interface TiViewProxy : TiProxy {
+#else
 @interface TiViewProxy : TiProxy <LayoutAutosizing> {
+#endif
   @protected
   //TODO: Actually have a rhyme and reason on keeping things @protected vs @private.
   //For now, for sake of proper value grouping, we're all under one roof.
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 #pragma mark Layout properties
   LayoutConstraint layoutProperties;
 #endif
@@ -168,6 +176,11 @@ enum {
  */
 @property (nonatomic, readonly) NSArray *children;
 
+#pragma mark - Flex layout
+@property (nonatomic, strong) StyleProxy *style;
+@property (nonatomic, strong) LayoutContext *layoutContext;
+@property (nonatomic, strong) FlexLayoutService *layoutService;
+
 - (void)startLayout:(id)arg; //Deprecated since 3.0.0
 - (void)finishLayout:(id)arg; //Deprecated since 3.0.0
 - (void)updateLayout:(id)arg; //Deprecated since 3.0.0
@@ -224,7 +237,7 @@ enum {
  */
 - (void)animate:(id)arg;
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)setTop:(id)value;
 - (void)setBottom:(id)value;
 - (void)setLeft:(id)value;
@@ -236,7 +249,7 @@ enum {
 - (id)zIndex;
 
 // See the code for setValue:forUndefinedKey: for why we can't have this
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (void)setMinWidth:(id)value;
 - (void)setMinHeight:(id)value;
 - (void)setCenter:(id)value;
@@ -258,7 +271,7 @@ enum {
 @property (nonatomic, assign) TiViewProxy *parent;
 //TODO: make this a proper readwrite property declaration.
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 /**
  Provides access to layout properties of the underlying view.
  */

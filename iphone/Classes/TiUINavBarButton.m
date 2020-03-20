@@ -97,7 +97,7 @@ DEFINE_EXCEPTIONS
       self = [super initWithCustomView:[proxy_ view]];
       self.target = self;
       self.action = @selector(clicked:);
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
       if ([[proxy_ view] isKindOfClass:[UIControl class]]) {
         [(UIControl *)[proxy_ view] addTarget:self action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
       }

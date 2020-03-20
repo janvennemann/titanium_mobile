@@ -278,7 +278,7 @@
   return result;
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (UIView *)parentViewForChild:(TiViewProxy *)child
 {
   [self lockViews];
@@ -349,7 +349,7 @@
 
 - (void)willChangeLayout
 {
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
   if (layoutProperties.layoutStyle != TiLayoutRuleAbsolute) {
     layoutProperties.layoutStyle = TiLayoutRuleAbsolute;
   }

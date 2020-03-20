@@ -801,7 +801,7 @@
       //relayout titleControl
       CGRect barBounds;
       barBounds.origin = CGPointZero;
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
       barBounds.size = SizeConstraintViewWithSizeAddingResizing(titleControl.layoutProperties, titleControl, availableTitleSize, NULL);
 #endif
       [oldView setBounds:barBounds];

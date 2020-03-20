@@ -55,7 +55,7 @@
 - (void)updatePositioning
 {
   CGPoint center = [[_snapItem view] center];
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 
   LayoutConstraint *constraint = [_snapItem layoutProperties];
   constraint->centerX = TiDimensionDip(center.x);

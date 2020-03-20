@@ -1,0 +1,11 @@
+framework module StretchKit {
+  umbrella header "StretchKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module StretchKit.Swift {
+    header "StretchKit-Swift.h"
+    requires objc
+}

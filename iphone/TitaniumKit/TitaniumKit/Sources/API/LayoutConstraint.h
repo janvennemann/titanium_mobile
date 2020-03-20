@@ -34,7 +34,7 @@
 - (TiDimension)defaultAutoHeightBehavior:(id)unused;
 
 @end
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 
 /**
  Layout options to determine absolute, vertical and horizontal layout.

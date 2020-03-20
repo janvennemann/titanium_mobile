@@ -29,7 +29,7 @@ USE_VIEW_FOR_CONTENT_HEIGHT
   return [[TiUIProgressBar alloc] initWithStyle:style andMinimumValue:min maximumValue:max];
 }
 
-#ifndef TI_USE_AUTOLAYOUT
+#ifndef TI_USE_FLEXLAYOUT
 - (TiDimension)defaultAutoWidthBehavior:(id)unused
 {
   return TiDimensionAutoFill;
