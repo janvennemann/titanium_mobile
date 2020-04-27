@@ -23,10 +23,8 @@
 /* Begin PBXBuildFile section */
 		4A175276218B64E70094C7B6 /* KrollTimerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A175274218B64E70094C7B6 /* KrollTimerManager.h */; };
 		4A175277218B64E70094C7B6 /* KrollTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A175275218B64E70094C7B6 /* KrollTimerManager.m */; };
-		4A36809C2383646C00FE39DD /* FlexLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A36809B2383646C00FE39DD /* FlexLayoutView.swift */; };
 		4A36809F238364CB00FE39DD /* CssStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A36809E238364CB00FE39DD /* CssStyle.swift */; };
 		4A3680A2238366A500FE39DD /* FlexLayoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3680A1238366A500FE39DD /* FlexLayoutService.swift */; };
-		4A3680A42384B5B000FE39DD /* FlexLayoutViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3680A32384B5B000FE39DD /* FlexLayoutViewProxy.swift */; };
 		4A3680A723856C9500FE39DD /* FlexLayoutView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A3680A523856C9500FE39DD /* FlexLayoutView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A3680A823856C9500FE39DD /* FlexLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3680A623856C9500FE39DD /* FlexLayoutView.m */; };
 		4AD3CCE8241FE88900E511F0 /* LayoutContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3CCE7241FE88900E511F0 /* LayoutContext.swift */; };
@@ -207,10 +205,8 @@
 /* Begin PBXFileReference section */
 		4A175274218B64E70094C7B6 /* KrollTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KrollTimerManager.h; sourceTree = "<group>"; };
 		4A175275218B64E70094C7B6 /* KrollTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KrollTimerManager.m; sourceTree = "<group>"; };
-		4A36809B2383646C00FE39DD /* FlexLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutView.swift; sourceTree = "<group>"; };
 		4A36809E238364CB00FE39DD /* CssStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CssStyle.swift; sourceTree = "<group>"; };
 		4A3680A1238366A500FE39DD /* FlexLayoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutService.swift; sourceTree = "<group>"; };
-		4A3680A32384B5B000FE39DD /* FlexLayoutViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutViewProxy.swift; sourceTree = "<group>"; };
 		4A3680A523856C9500FE39DD /* FlexLayoutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexLayoutView.h; sourceTree = "<group>"; };
 		4A3680A623856C9500FE39DD /* FlexLayoutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlexLayoutView.m; sourceTree = "<group>"; };
 		4AD3CCE7241FE88900E511F0 /* LayoutContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutContext.swift; sourceTree = "<group>"; };
@@ -595,8 +591,6 @@
 				DB15FC481F0A83A700A82C45 /* WebFont.m */,
 				4A3680A1238366A500FE39DD /* FlexLayoutService.swift */,
 				4AF56278243237F700421F9D /* LayoutNodeFactory.swift */,
-				4A36809B2383646C00FE39DD /* FlexLayoutView.swift */,
-				4A3680A32384B5B000FE39DD /* FlexLayoutViewProxy.swift */,
 				4A36809E238364CB00FE39DD /* CssStyle.swift */,
 				4AD3CCE9241FFC6D00E511F0 /* StyleProxy.swift */,
 				4A3680A523856C9500FE39DD /* FlexLayoutView.h */,
@@ -848,7 +842,6 @@
 			files = (
 				DB15FD091F0A892500A82C45 /* Ti3DMatrix.m in Sources */,
 				DB15FCB91F0A874F00A82C45 /* TopTiModule.m in Sources */,
-				4A3680A42384B5B000FE39DD /* FlexLayoutViewProxy.swift in Sources */,
 				DB15FC4E1F0A848200A82C45 /* TiApp.m in Sources */,
 				DB15FCB11F0A86E600A82C45 /* TiBindingTiValue.m in Sources */,
 				DB15FC461F0A838E00A82C45 /* TiColor.m in Sources */,
@@ -900,7 +893,6 @@
 				DB15FC681F0A84E000A82C45 /* TiStylesheet.m in Sources */,
 				DB15FD251F0A8A7B00A82C45 /* TiBindingEvent.m in Sources */,
 				DB15FBEF1F0A80E400A82C45 /* TiDimension.m in Sources */,
-				4A36809C2383646C00FE39DD /* FlexLayoutView.swift in Sources */,
 				DB258DA21F097680000D0D8D /* TiViewProxy.m in Sources */,
 				DB15FC781F0A851A00A82C45 /* TiRootViewController.m in Sources */,
 				DB15FCD11F0A87C100A82C45 /* NSData+Additions.m in Sources */,
